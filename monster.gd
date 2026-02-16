@@ -1,13 +1,16 @@
 # starts and stops timer for attributes  
 extends CharacterBody2D
+@onready var _animated_sprite = $AnimatedSprite2D
 var health = 100
 var hunger = 100
 var activity = 100
+
 var monster_atts = [health,hunger,activity]
 
 func _ready():
 	$Timer.start()
 	$Timer.wait_time = health
+	
 	print("your time has started now")
 
 func life_change(health):
@@ -17,8 +20,10 @@ func _process(_delta):
 	$health.value = $Timer.time_left 
 	if $Timer.time_left <= 50:
 		print("im hungry boss")
+		_animated_sprite.play("idle")
 	else:
 		print("Im prerfectly fine")
+		_animated_sprite.stop()
 		
 func _on_timer_timeout():
 	print("TIMER ")
