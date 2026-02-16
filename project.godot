@@ -15,7 +15,7 @@ run/main_scene="uid://bc5bk33wxk36p"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/image="uid://dg6ik0pvv85u3"
 config/icon="res://icon.svg"
-boot_splash/minimum_display_time=35
+boot_splash/minimum_display_time=1500
 
 [input]
 
