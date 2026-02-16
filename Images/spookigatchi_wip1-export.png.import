@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cayg6sfej4jnm"
-path="res://.godot/imported/Mon3.png-e1eeabe1036507127a2552b141b41b34.ctex"
+uid="uid://dg6ik0pvv85u3"
+path="res://.godot/imported/spookigatchi_wip1-export.png-095d380fc3e672332b81a0a1743a1403.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mon3.png"
-dest_files=["res://.godot/imported/Mon3.png-e1eeabe1036507127a2552b141b41b34.ctex"]
+source_file="res://Images/spookigatchi_wip1-export.png"
+dest_files=["res://.godot/imported/spookigatchi_wip1-export.png-095d380fc3e672332b81a0a1743a1403.ctex"]
 
 [params]
 

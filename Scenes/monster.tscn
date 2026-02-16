@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://di4s1xaui1xi6"]
+
+[ext_resource type="Script" uid="uid://dvcjxvoyq3ypa" path="res://Scripts/monster.gd" id="1_bua6k"]
+[ext_resource type="Texture2D" uid="uid://c7ra12iwkptnh" path="res://Images/Mon1.png" id="2_auidl"]
+[ext_resource type="Texture2D" uid="uid://b7vep0onl8jcg" path="res://Images/Mon2.png" id="3_ko0n3"]
+[ext_resource type="Texture2D" uid="uid://cayg6sfej4jnm" path="res://Images/Mon3.png" id="4_yc8mp"]
+[ext_resource type="Texture2D" uid="uid://dw31droq4vygw" path="res://Images/Mon4.png" id="5_1mxyj"]
+[ext_resource type="Texture2D" uid="uid://b5vya6ak8dfhn" path="res://Images/Mon5.png" id="6_dfc53"]
+[ext_resource type="Texture2D" uid="uid://b2rg6j2yg5hrn" path="res://Images/Mon6.png" id="7_g0mdy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocebi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_auidl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ko0n3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yc8mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1mxyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dfc53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g0mdy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="monster" type="CharacterBody2D" unique_id=197105681]
+script = ExtResource("1_bua6k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130375473]
+position = Vector2(894.00006, 235)
+scale = Vector2(1.3229167, 1.2262527)
+sprite_frames = SubResource("SpriteFrames_ocebi")
+animation = &"idle"
+frame = 4
+frame_progress = 0.36834398
+speed_scale = 2.0
+
+[node name="Timer" type="Timer" parent="." unique_id=873334123]
+process_callback = 0
+wait_time = 0.111
+one_shot = true
+autostart = true
+
+[node name="health" type="ProgressBar" parent="." unique_id=1573885622]
+unique_name_in_owner = true
+offset_right = 521.0
+offset_bottom = 81.0
+show_percentage = false
+
+[node name="hunger" type="ProgressBar" parent="." unique_id=825022316]
+unique_name_in_owner = true
+offset_top = 83.0
+offset_right = 413.0
+offset_bottom = 157.0
+value = 100.0
+show_percentage = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

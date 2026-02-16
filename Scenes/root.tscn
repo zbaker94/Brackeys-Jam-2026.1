@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ygbq6eywa84u" path="res://Scenes/text_box.tscn" id="1_i04dx"]
 [ext_resource type="FontFile" uid="uid://8ond7iuol3xe" path="res://Fonts/Rovkall-Regular.ttf" id="2_vnucn"]
 [ext_resource type="Script" uid="uid://cvvp8g14udawy" path="res://Resources/CharDelayMap.gd" id="3_vnucn"]
+[ext_resource type="PackedScene" uid="uid://di4s1xaui1xi6" path="res://Scenes/monster.tscn" id="4_4g5cr"]
+[ext_resource type="PackedScene" uid="uid://byi3xy01e5uqs" path="res://Scenes/food.tscn" id="5_ckhy6"]
 
 [sub_resource type="Theme" id="Theme_i04dx"]
 default_font = ExtResource("2_vnucn")
@@ -38,6 +40,12 @@ Please{pause_4} feed{pause_7} ME!
 minimum_font_size = 10
 maximum_font_size = 60
 char_delay_map = SubResource("Resource_c3mwy")
+
+[node name="monster" parent="." unique_id=197105681 instance=ExtResource("4_4g5cr")]
+position = Vector2(-568, -318)
+
+[node name="Node2D" parent="." unique_id=367640528 instance=ExtResource("5_ckhy6")]
+position = Vector2(-579, -3)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=392951493]
 

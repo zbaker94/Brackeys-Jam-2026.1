@@ -20,10 +20,11 @@ func _process(_delta):
 	$health.value = $Timer.time_left 
 	if $Timer.time_left <= 50:
 		print("im hungry boss")
-		_animated_sprite.play("idle")
+		
 	else:
 		print("Im prerfectly fine")
-		_animated_sprite.stop()
+		_animated_sprite.play("idle")
+		# _animated_sprite.stop()
 		
 func _on_timer_timeout():
 	print("TIMER ")
