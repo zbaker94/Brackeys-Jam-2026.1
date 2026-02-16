@@ -24,8 +24,8 @@ metadata/_custom_type_script = "uid://cvvp8g14udawy"
 
 [node name="TextBox" parent="." unique_id=2000714749 instance=ExtResource("1_i04dx")]
 offset_left = -555.0
-offset_top = 144.0
-offset_right = 560.0
+offset_top = 107.0
+offset_right = 554.0
 offset_bottom = 317.0
 
 [node name="Text" parent="TextBox/Background/MarginContainer" parent_id_path=PackedInt32Array(2000714749, 1203162799) index="0" unique_id=1510689704]

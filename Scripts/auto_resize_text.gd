@@ -73,44 +73,59 @@ func _process(delta: float) -> void:
 		_finish_typewriter()
 
 func _deferred_setup() -> void:
-	call_deferred("fit_text")
+	var typewriter_data = _parse_text_for_typewriter(text)
+	text = typewriter_data["display_text"]
+	await _recalculate_font_size()
+	_start_typewriter_effect(typewriter_data)
 	resized.connect(call_deferred_fit)
 
 func call_deferred_fit() -> void:
-	if _cached_font_size > 0 and _typewriter_active:
-		# Preserve typewriter progress on resize, just reapply cached font size
-		add_theme_font_size_override("normal_font_size", _cached_font_size)
+	if _typewriter_active:
+		# Save typewriter state before recalculating
+		var saved_step_index := _typewriter_step_index
+		var saved_time_accumulator := _typewriter_time_accumulator
+		var saved_speed_multiplier := _current_speed_multiplier
+		var saved_sequence := _typewriter_sequence.duplicate()
+		var saved_visible_characters := visible_characters
+		_typewriter_active = false
+		
+		await _recalculate_font_size()
+		
+		# Restore typewriter state
+		_typewriter_sequence = saved_sequence
+		_typewriter_step_index = saved_step_index
+		_typewriter_time_accumulator = saved_time_accumulator
+		_current_speed_multiplier = saved_speed_multiplier
+		visible_characters = saved_visible_characters
+		_typewriter_active = true
+		
 		if debug_print:
-			print("Resize: reusing cached font size ", _cached_font_size, ", preserving typewriter progress")
+			print("Resize: recalculated font size to ", _cached_font_size, ", preserved typewriter at step ", saved_step_index)
 	else:
-		call_deferred("fit_text")
+		# Typewriter finished or not started, just recalculate font size
+		await _recalculate_font_size()
+		visible_ratio = 1.0  # Show all text
 
-func fit_text() -> void:
+func _recalculate_font_size() -> void:
+	"""Binary search to find optimal font size for current text and container size"""
 	visible_ratio = 0
-	
-	# Parse text and extract display text (strip control sequences, preserve BBCode)
-	var typewriter_data := _parse_text_for_typewriter(text)
-	var display_text: String = typewriter_data["display_text"]
-	
-	# Set display text for measurement
-	text = display_text
 	
 	# Explicitly type the font variable to avoid Variant inference
 	var font: Font = get_theme_font("normal_font")
 	if font == null:
 		if debug_print:
-			print("fit_text: no theme font found for key 'normal_font'")
+			print("_recalculate_font_size: no theme font found")
 		return
 
 	var available_w: float = max(0.0, size.x - extra_padding_x)
 	var available_h: float = max(0.0, size.y - extra_padding_y)
 
 	if debug_print:
-		print("fit_text start: control size=", size, " avail=", Vector2(available_w, available_h))
+		print("_recalculate_font_size start: control size=", size, " avail=", Vector2(available_w, available_h))
 
 	if available_w <= 0.0 or available_h <= 0.0:
 		if debug_print:
-			print("fit_text: available area <= 0, skipping")
+			print("_recalculate_font_size: available area <= 0, skipping")
 		return
 
 	var lo: int = minimum_font_size
@@ -140,13 +155,11 @@ func fit_text() -> void:
 	_cached_font_size = best
 	
 	if debug_print:
-		print("fit_text done: best=", best)
-		
-	# Start typewriter effect with parsed data
-	_start_typewriter_effect(typewriter_data)
+		print("_recalculate_font_size done: best=", best)
 
 
 func _start_typewriter_effect(typewriter_data: Dictionary) -> void:
+	"""Start typewriter animation with parsed sequence data"""
 	visible_characters = 0
 	_typewriter_sequence = typewriter_data["sequence"]
 	_typewriter_step_index = 0
@@ -158,12 +171,14 @@ func _start_typewriter_effect(typewriter_data: Dictionary) -> void:
 		print("Typewriter started with ", _typewriter_sequence.size(), " steps")
 
 func _skip_typewriter() -> void:
+	"""Instantly complete typewriter animation"""
 	visible_ratio = 1.0
 	_finish_typewriter()
 	if debug_print:
 		print("Typewriter skipped")
 
 func _finish_typewriter() -> void:
+	"""Clean up typewriter state and emit completion signal"""
 	_typewriter_active = false
 	_typewriter_sequence.clear()
 	typewriter_finished.emit()
@@ -171,6 +186,7 @@ func _finish_typewriter() -> void:
 		print("Typewriter finished")
 
 func _parse_text_for_typewriter(source_text: String) -> Dictionary:
+	"""Parse text into sequence of displayable characters and control commands. Returns {sequence: Array, display_text: String}"""
 	# Check cache first
 	var cache_key := str(source_text.hash())
 	if char_delay_map:
