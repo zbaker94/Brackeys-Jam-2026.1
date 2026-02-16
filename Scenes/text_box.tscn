@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ygbq6eywa84u"]
+
+[ext_resource type="Texture2D" uid="uid://brswil8wbv2l8" path="res://Images/9patch-textbox.png" id="1_0kxgl"]
+[ext_resource type="Script" uid="uid://ctkvatxpkvlcs" path="res://Scripts/auto_resize_text.gd" id="2_ot2p7"]
+
+[node name="TextBox" type="Control" unique_id=2000714749]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 273.0
+offset_bottom = 63.0
+
+[node name="Background" type="NinePatchRect" parent="." unique_id=663755698]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_0kxgl")
+patch_margin_left = 110
+patch_margin_top = 1
+patch_margin_right = 110
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=1203162799]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="Text" type="RichTextLabel" parent="Background/MarginContainer" unique_id=1510689704]
+layout_mode = 2
+text = "Test kajdfhkajhfkjafgasgfkagfkjagfkagfkfgakfgkajsgfkajgfkajsfgkajsfg"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_ot2p7")
