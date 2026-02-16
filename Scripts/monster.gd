@@ -37,16 +37,10 @@ func _on_timer_timeout():
 
 
 # TODO:
-#func hunger_change(hunger):
-#	$hunger.value = hunger
-#func _process_hunger(_delta):
-#	$hunger.value = $Timer.time_left 
-#	if $hunger.value <= 50:
-#		print("im now hungry")
-	#check for monster attributes
-	#tick down attributes over time
-	
-	#if health & hunger < 5
-		#play hunger animation
-	#else activity < 5 
-		#play bored
+
+# health loss if hunger and being bored gets too low
+# clickable & drag item to monster
+# animations for low resources
+# custom crusor
+# day cycle
+# game end results
