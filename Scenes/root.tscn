@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://bc5bk33wxk36p"]
 
+[ext_resource type="PackedScene" uid="uid://cy1c824mdiqps" path="res://Scenes/cursor_proxy.tscn" id="1_i04dx"]
+
 [node name="Root" type="Node2D" unique_id=1854834937]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=392951493]
+
+[node name="CursorProxy" parent="." unique_id=859386784 instance=ExtResource("1_i04dx")]
+animation = &"point"

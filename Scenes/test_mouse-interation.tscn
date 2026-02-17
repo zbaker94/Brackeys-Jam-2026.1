@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://qmvvmcbbrqcl"]
+
+[ext_resource type="PackedScene" uid="uid://cy1c824mdiqps" path="res://Scenes/cursor_proxy.tscn" id="1_w8jc4"]
+[ext_resource type="Texture2D" uid="uid://b8j44ece2xsyo" path="res://Images/star filled.png" id="2_eeyv2"]
+[ext_resource type="PackedScene" uid="uid://biowc5t4oe8fs" path="res://Scenes/mouse_collider.tscn" id="3_q60jo"]
+[ext_resource type="Texture2D" uid="uid://ujysj15poq8f" path="res://Images/toggle square.png" id="4_5m2ya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q0ab"]
+size = Vector2(159, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfufh"]
+size = Vector2(119, 121)
+
+[node name="Root" type="Node2D" unique_id=1120554169]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1494148549]
+
+[node name="CursorProxy" parent="." unique_id=859386784 instance=ExtResource("1_w8jc4")]
+animation = &"point"
+
+[node name="StarFilled" type="Sprite2D" parent="." unique_id=1112792852]
+position = Vector2(-283, -145)
+texture = ExtResource("2_eeyv2")
+
+[node name="MouseCollider" parent="StarFilled" unique_id=101062246 instance=ExtResource("3_q60jo")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarFilled/MouseCollider" unique_id=1205760057]
+position = Vector2(0.5, -6)
+shape = SubResource("RectangleShape2D_0q0ab")
+
+[node name="ToggleSquare" type="Sprite2D" parent="." unique_id=874311326]
+position = Vector2(268, -141)
+texture = ExtResource("4_5m2ya")
+
+[node name="MouseCollider" parent="ToggleSquare" unique_id=808365068 instance=ExtResource("3_q60jo")]
+animation = "grab"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToggleSquare/MouseCollider" unique_id=1822788983]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_rfufh")
