@@ -1,52 +1,10 @@
 [gd_scene format=3 uid="uid://bc5bk33wxk36p"]
 
-[ext_resource type="PackedScene" uid="uid://ygbq6eywa84u" path="res://Scenes/text_box.tscn" id="1_i04dx"]
-[ext_resource type="FontFile" uid="uid://8ond7iuol3xe" path="res://Fonts/Rovkall-Regular.ttf" id="2_vnucn"]
-[ext_resource type="Script" uid="uid://cvvp8g14udawy" path="res://Resources/CharDelayMap.gd" id="3_vnucn"]
-[ext_resource type="PackedScene" uid="uid://di4s1xaui1xi6" path="res://Scenes/monster.tscn" id="4_4g5cr"]
-[ext_resource type="PackedScene" uid="uid://byi3xy01e5uqs" path="res://Scenes/food.tscn" id="5_ckhy6"]
-
-[sub_resource type="Theme" id="Theme_i04dx"]
-default_font = ExtResource("2_vnucn")
-
-[sub_resource type="Resource" id="Resource_c3mwy"]
-script = ExtResource("3_vnucn")
-base_delay = 0.07
-char_delays = {
-"
-": 0.18,
-"!": 0.3,
-",": 0.2,
-".": 0.5,
-"?": 0.3
-}
-metadata/_custom_type_script = "uid://cvvp8g14udawy"
+[ext_resource type="PackedScene" uid="uid://cy1c824mdiqps" path="res://Scenes/cursor_proxy.tscn" id="1_i04dx"]
 
 [node name="Root" type="Node2D" unique_id=1854834937]
 
-[node name="TextBox" parent="." unique_id=2000714749 instance=ExtResource("1_i04dx")]
-offset_left = -564.0
-offset_top = 148.0
-offset_right = 563.0
-offset_bottom = 311.02823
-
-[node name="Text" parent="TextBox/Background/MarginContainer" parent_id_path=PackedInt32Array(2000714749, 1203162799) index="0" unique_id=1510689704]
-theme = SubResource("Theme_i04dx")
-theme_override_constants/line_separation = 8
-text = "Dearest Papa,
-I am so {pause_4}so {speed_1.5}very hungry{speed_reset}...
-Please{pause_4} feed{pause_7} ME!
-{speed_20}Speedy Fast Text ->"
-minimum_font_size = 10
-maximum_font_size = 60
-char_delay_map = SubResource("Resource_c3mwy")
-
-[node name="monster" parent="." unique_id=197105681 instance=ExtResource("4_4g5cr")]
-position = Vector2(-568, -318)
-
-[node name="Node2D" parent="." unique_id=367640528 instance=ExtResource("5_ckhy6")]
-position = Vector2(-579, -3)
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=392951493]
 
-[editable path="TextBox"]
+[node name="CursorProxy" parent="." unique_id=859386784 instance=ExtResource("1_i04dx")]
+animation = &"point"
