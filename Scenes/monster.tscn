@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b2rg6j2yg5hrn" path="res://Images/Mon6.png" id="7_g0mdy"]
 [ext_resource type="Texture2D" uid="uid://d1egoxlid6sky" path="res://Images/healthmon1.png" id="8_ko0n3"]
 [ext_resource type="Texture2D" uid="uid://bf8favxoq0cbf" path="res://Images/healthmon2.png" id="9_yc8mp"]
+[ext_resource type="Texture2D" uid="uid://ck05yqj1c2jvn" path="res://Images/babyform1.png" id="10_yc8mp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocebi"]
 animations = [{
@@ -54,6 +55,7 @@ animations = [{
 script = ExtResource("1_bua6k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130375473]
+visible = false
 position = Vector2(894.00006, 235)
 scale = Vector2(1.3229167, 1.2262527)
 sprite_frames = SubResource("SpriteFrames_ocebi")
@@ -83,11 +85,16 @@ value = 100.0
 show_percentage = false
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1028480976]
-position = Vector2(593, 73)
+position = Vector2(776, 367)
 sprite_frames = SubResource("SpriteFrames_1mxyj")
 animation = &"health"
 frame = 1
-frame_progress = 0.68107873
+frame_progress = 0.035677303
 speed_scale = 0.5
+
+[node name="Babyform1" type="Sprite2D" parent="." unique_id=1374161762]
+position = Vector2(564, 266)
+scale = Vector2(3.3242183, 3.3242183)
+texture = ExtResource("10_yc8mp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
