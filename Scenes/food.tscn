@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://byi3xy01e5uqs"]
 
-[ext_resource type="Texture2D" uid="uid://b8onjn2ohwfly" path="res://Sprite-0003.png" id="1_pohk7"]
-[ext_resource type="Script" uid="uid://4i1qe8qlewmi" path="res://food.gd" id="2_q6vj8"]
+[ext_resource type="Texture2D" uid="uid://b8onjn2ohwfly" path="res://Images/Sprite-0003.png" id="1_fhto3"]
+[ext_resource type="Script" uid="uid://4i1qe8qlewmi" path="res://Scripts/food.gd" id="2_h4kkx"]
 
 [node name="Node2D" type="Node2D" unique_id=367640528]
 
 [node name="food" type="Sprite2D" parent="." unique_id=1690879480]
 position = Vector2(325, 74)
-texture = ExtResource("1_pohk7")
-script = ExtResource("2_q6vj8")
+texture = ExtResource("1_fhto3")
+script = ExtResource("2_h4kkx")
 
 [node name="Button" type="Button" parent="." unique_id=554538158]
 offset_left = 12.0
