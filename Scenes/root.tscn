@@ -5,8 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dqhs2oyye6kqr" path="res://Feeding Tube.png" id="3_c3mwy"]
 [ext_resource type="Script" uid="uid://f78uw8am3ot6" path="res://Scenes/feeding_tube.gd" id="4_4g5cr"]
 [ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="5_4g5cr"]
-[ext_resource type="Texture2D" uid="uid://b8onjn2ohwfly" path="res://Images/Sprite-0003.png" id="6_dun2r"]
-[ext_resource type="Script" uid="uid://4i1qe8qlewmi" path="res://Scripts/food.gd" id="7_r3lo5"]
 
 [node name="Root" type="Node2D" unique_id=1854834937]
 
@@ -36,13 +34,5 @@ offset_bottom = 109.820305
 
 [node name="Global" type="Node" parent="." unique_id=1334820178]
 script = ExtResource("5_4g5cr")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=677797609]
-
-[node name="Sprite0003" type="Sprite2D" parent="Area2D" unique_id=1967167917]
-position = Vector2(-22.25, 224.75)
-scale = Vector2(0.49555555, 0.49555555)
-texture = ExtResource("6_dun2r")
-script = ExtResource("7_r3lo5")
 
 [connection signal="mouse_entered" from="FeedingTube/Button" to="FeedingTube" method="_on_button_mouse_entered"]
