@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvcjxvoyq3ypa" path="res://Scripts/monster.gd" id="1_bua6k"]
 [ext_resource type="Texture2D" uid="uid://c7ra12iwkptnh" path="res://Images/Mon1.png" id="2_auidl"]
+[ext_resource type="Script" uid="uid://b2ugjk3g8cvtb" path="res://Resources/stats_timer.gd" id="3_dfc53"]
 [ext_resource type="Texture2D" uid="uid://b7vep0onl8jcg" path="res://Images/Mon2.png" id="3_ko0n3"]
 [ext_resource type="Texture2D" uid="uid://cayg6sfej4jnm" path="res://Images/Mon3.png" id="4_yc8mp"]
 [ext_resource type="Texture2D" uid="uid://dw31droq4vygw" path="res://Images/Mon4.png" id="5_1mxyj"]
@@ -11,6 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://bf8favxoq0cbf" path="res://Images/healthmon2.png" id="9_yc8mp"]
 [ext_resource type="Texture2D" uid="uid://ck05yqj1c2jvn" path="res://Images/babyform1.png" id="10_yc8mp"]
 [ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="11_1mxyj"]
+
+[sub_resource type="Resource" id="Resource_g0mdy"]
+script = ExtResource("3_dfc53")
+stat_name = "hunger"
+initial_duration = 25.0
+initial_value = 100.0
+delta = 20.0
+metadata/_custom_type_script = "uid://b2ugjk3g8cvtb"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocebi"]
 animations = [{
@@ -55,6 +64,10 @@ animations = [{
 [node name="monster" type="CharacterBody2D" unique_id=197105681]
 script = ExtResource("1_bua6k")
 
+[node name="GlobalStats" type="Node" parent="." unique_id=298173973]
+script = ExtResource("11_1mxyj")
+stat_timers = Array[ExtResource("3_dfc53")]([SubResource("Resource_g0mdy")])
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130375473]
 visible = false
 position = Vector2(894.00006, 235)
@@ -97,8 +110,5 @@ speed_scale = 0.5
 position = Vector2(564, 266)
 scale = Vector2(3.3242183, 3.3242183)
 texture = ExtResource("10_yc8mp")
-
-[node name="global" type="Node" parent="." unique_id=298173973]
-script = ExtResource("11_1mxyj")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
