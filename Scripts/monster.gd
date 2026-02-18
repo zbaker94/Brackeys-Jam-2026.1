@@ -1,23 +1,18 @@
 # starts and stops timer for attributes; custom cursor  
-extends CharacterBody2D
+extends CharacterBody2D 
+
+
 
 @onready var _idle = $AnimatedSprite2D
 @onready var _health = $AnimatedSprite2D2
-var health = 100
-var hunger = 100
-var activity = 100
-var arrow = load("res://Images/cursor.png")
-var monster_atts = [health,hunger,activity]
 
 func _ready():
-	Input.set_custom_mouse_cursor(arrow)
+	Input.set_custom_mouse_cursor(Global.arrow)
 	$Timer.start()
-	$Timer.wait_time = health
+	$Timer.wait_time = 105
 	print("your time has started now")
-
-func _process(_delta):
-	$health.value = $Timer.time_left 
-	if $Timer.time_left and hunger <= 50:
+	
+	if Global.health and Global.hunger <= 25:
 		print("im not feeling too good")
 		_health.play("health") 
 		_idle.play("idle")
@@ -25,18 +20,40 @@ func _process(_delta):
 	else:
 		print("Im prerfectly fine")
 		_idle.play("idle")
+
+func _process(_delta):
+	$hunger.value = $Timer.time_left 
+	
 		
 
 func _on_timer_timeout():
 	print("TIMER done ")
-	$Timer.start()
+	print("your hunger is:"+ str(Global.hunger)) 
+	$Timer.start()	
+	Global.hunger -=25
+	
+
+
+
+
+
+
+
 
 
 # TODO:
+# Hunger ticks down over time (done?)
+# Food pipe emitting signal waiting for food item
+# When food bar gets to certain point play hunger animation
+# When food gets added to pipe fill back food bar
+# Click and drag food item to food pipe 
+# change form from mon1 to mon2 
+# Spawn poop on screen
+# Drag to poop bucket 
+# If to many spawns
+# Play stink animation
 
-# health loss if hunger and being bored gets too low
-# clickable & drag item to monster
-# animations for low resources
-# custom crusor
-# day cycle
-# game end results
+# If poop and food are down tick health down over time stop once poop < 4
+# Emit signal for wash rag from bucket
+# Grab wash rag from bucket click on monster
+# If moster ate food and washrag was used increase health 

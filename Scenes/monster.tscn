@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d1egoxlid6sky" path="res://Images/healthmon1.png" id="8_ko0n3"]
 [ext_resource type="Texture2D" uid="uid://bf8favxoq0cbf" path="res://Images/healthmon2.png" id="9_yc8mp"]
 [ext_resource type="Texture2D" uid="uid://ck05yqj1c2jvn" path="res://Images/babyform1.png" id="10_yc8mp"]
+[ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="11_1mxyj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocebi"]
 animations = [{
@@ -96,5 +97,8 @@ speed_scale = 0.5
 position = Vector2(564, 266)
 scale = Vector2(3.3242183, 3.3242183)
 texture = ExtResource("10_yc8mp")
+
+[node name="global" type="Node" parent="." unique_id=298173973]
+script = ExtResource("11_1mxyj")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

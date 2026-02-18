@@ -1,10 +1,48 @@
 [gd_scene format=3 uid="uid://bc5bk33wxk36p"]
 
+[ext_resource type="Texture2D" uid="uid://cowmbohxod3ur" path="res://BackgroundV1.png" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://cy1c824mdiqps" path="res://Scenes/cursor_proxy.tscn" id="1_i04dx"]
+[ext_resource type="Texture2D" uid="uid://dqhs2oyye6kqr" path="res://Feeding Tube.png" id="3_c3mwy"]
+[ext_resource type="Script" uid="uid://f78uw8am3ot6" path="res://Scenes/feeding_tube.gd" id="4_4g5cr"]
+[ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="5_4g5cr"]
+[ext_resource type="Texture2D" uid="uid://b8onjn2ohwfly" path="res://Images/Sprite-0003.png" id="6_dun2r"]
+[ext_resource type="Script" uid="uid://4i1qe8qlewmi" path="res://Scripts/food.gd" id="7_r3lo5"]
 
 [node name="Root" type="Node2D" unique_id=1854834937]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1830980499]
+offset_left = -325.0
+offset_top = -324.0
+offset_right = 324.0
+offset_bottom = 325.0
+texture = ExtResource("1_8pvmw")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=392951493]
 
 [node name="CursorProxy" parent="." unique_id=859386784 instance=ExtResource("1_i04dx")]
-animation = &"point"
+position = Vector2(27, 11)
+
+[node name="FeedingTube" type="Sprite2D" parent="." unique_id=1991693349]
+position = Vector2(282, -151.00002)
+scale = Vector2(1.3476563, 1.3476563)
+texture = ExtResource("3_c3mwy")
+script = ExtResource("4_4g5cr")
+
+[node name="Button" type="Button" parent="FeedingTube" unique_id=88308665]
+offset_left = -30.42319
+offset_top = 65.29856
+offset_right = 14.098555
+offset_bottom = 109.820305
+
+[node name="Global" type="Node" parent="." unique_id=1334820178]
+script = ExtResource("5_4g5cr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=677797609]
+
+[node name="Sprite0003" type="Sprite2D" parent="Area2D" unique_id=1967167917]
+position = Vector2(-22.25, 224.75)
+scale = Vector2(0.49555555, 0.49555555)
+texture = ExtResource("6_dun2r")
+script = ExtResource("7_r3lo5")
+
+[connection signal="mouse_entered" from="FeedingTube/Button" to="FeedingTube" method="_on_button_mouse_entered"]
