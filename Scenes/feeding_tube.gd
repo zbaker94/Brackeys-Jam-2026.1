@@ -11,9 +11,3 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-#func _on_button_mouse_entered():
-	#if Global.hunger < 90:
-		#print("I can eat")
-	#else:
-		#print("not hungry boss")

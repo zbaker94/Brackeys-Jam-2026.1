@@ -1,19 +1,14 @@
-#item interaction using a buttton stop & start
 extends Sprite2D
-var speed = 400
-var angular_speed = PI
-const SPEED:int = 50 
-var has_mouse:bool = false
+var dragging = false
+var of = Vector2(0,0)
 
-func _on_area_2d_mouse_entered():
-	has_mouse = true
-func _on_area_2d_exited():
-	has_mouse = false
+func _process(delta):
+	if dragging:
+		position = get_global_mouse_position() - of 
 
+func _on_button_button_down():
+	dragging = true
+	of = get_global_mouse_position() - global_position
 
-func _ready() -> void:
-	pass
-
-#func _process(delta):
-#	if Input.is_action_just_pressed("left_clicked"):
-#		global_position = global_position.lerp(get_global_mouse_position, SPEED * delta)
+func _on_button_button_up():
+	dragging = false

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://f78uw8am3ot6" path="res://Scenes/feeding_tube.gd" id="4_4g5cr"]
 [ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="5_4g5cr"]
 [ext_resource type="PackedScene" uid="uid://biowc5t4oe8fs" path="res://Scenes/mouse_collider.tscn" id="9_qtxxq"]
+[ext_resource type="PackedScene" uid="uid://byi3xy01e5uqs" path="res://Scenes/food.tscn" id="10_8fnbn"]
 
 [sub_resource type="Resource" id="Resource_r3lo5"]
 script = ExtResource("3_dun2r")
@@ -64,5 +65,8 @@ mouse_filter = 1
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FeedingTube/Button/MouseCollider" unique_id=426491043]
 position = Vector2(16.217957, 20.61735)
 polygon = PackedVector2Array(-9.539703, 9.063808, -5.8295593, 6.837721, -8.055634, 0.15946007, -8.055634, -9.4869175, -8.055634, -20.617353, 27.561752, -19.875322, 22.367554, -5.0347424, 21.625519, 9.063808, 21.625519, 12.773953, -10.281723, 12.031925)
+
+[node name="Node2D" parent="." unique_id=478719370 instance=ExtResource("10_8fnbn")]
+position = Vector2(-180, 106)
 
 [connection signal="mouse_entered" from="FeedingTube/Button" to="FeedingTube" method="_on_button_mouse_entered"]
