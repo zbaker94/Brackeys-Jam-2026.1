@@ -26,26 +26,7 @@ func _ready():
 	
 	global_stats.stat_changed.connect(on_stat_change)
 	
-	#if Global.health and Global.hunger <= 25:
-		#print("im not feeling too good")
-		#_health.play("health") 
-		#_idle.play("idle")
-		#
-	#else:
-		#print("Im prerfectly fine")
-		#_idle.play("idle")
 
-#func _process(_delta):
-	#$hunger.value = $Timer.time_left 
-	#
-		#
-#
-#func _on_timer_timeout():
-	#print("TIMER done ")
-	#print("your hunger is:"+ str(Global.hunger)) 
-	#$Timer.start()	
-	#Global.hunger -=25
-	
 
 
 
@@ -56,7 +37,6 @@ func _ready():
 
 
 # TODO:
-# Hunger ticks down over time (done?)
 # Food pipe emitting signal waiting for food item
 # When food bar gets to certain point play hunger animation
 # When food gets added to pipe fill back food bar (possibly reset the timer?)
