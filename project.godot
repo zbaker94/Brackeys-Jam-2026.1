@@ -17,6 +17,10 @@ boot_splash/image="uid://n8leis3q2oak"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1500
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 skip_text={

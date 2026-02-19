@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cx0qtr6eg6u3d"]
+
+[ext_resource type="Shader" uid="uid://4g2ecqdvs77b" path="res://Materials/animated_texture.gdshader" id="1_dih8u"]
+[ext_resource type="Texture2D" uid="uid://b5ruk0m3rd7t1" path="res://Images/bg-floor-small-noise-sheet.png" id="2_4ik6u"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dih8u")
+shader_parameter/albedo_texture = ExtResource("2_4ik6u")
+shader_parameter/rows = 1.0
+shader_parameter/columns = 24.0
+shader_parameter/fps = 6.0

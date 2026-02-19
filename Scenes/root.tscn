@@ -1,15 +1,11 @@
 [gd_scene format=3 uid="uid://bc5bk33wxk36p"]
 
-[ext_resource type="Texture2D" uid="uid://cowmbohxod3ur" path="res://BackgroundV1.png" id="1_8pvmw"]
-[ext_resource type="Script" uid="uid://dvcjxvoyq3ypa" path="res://Scripts/monster.gd" id="1_dun2r"]
 [ext_resource type="PackedScene" uid="uid://cy1c824mdiqps" path="res://Scenes/cursor_proxy.tscn" id="1_i04dx"]
 [ext_resource type="Script" uid="uid://b2ugjk3g8cvtb" path="res://Resources/stats_timer.gd" id="2_ckhy6"]
-[ext_resource type="Texture2D" uid="uid://dqhs2oyye6kqr" path="res://Feeding Tube.png" id="3_c3mwy"]
 [ext_resource type="Script" uid="uid://cd0eeckf2ia8f" path="res://Resources/stat.gd" id="3_dun2r"]
-[ext_resource type="Script" uid="uid://f78uw8am3ot6" path="res://Scenes/feeding_tube.gd" id="4_4g5cr"]
 [ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="5_4g5cr"]
-[ext_resource type="PackedScene" uid="uid://biowc5t4oe8fs" path="res://Scenes/mouse_collider.tscn" id="9_qtxxq"]
-[ext_resource type="PackedScene" uid="uid://byi3xy01e5uqs" path="res://Scenes/food.tscn" id="10_8fnbn"]
+[ext_resource type="Texture2D" uid="uid://cvvwn0738q0ek" path="res://Images/bg-floor-small-noise.png" id="5_ckhy6"]
+[ext_resource type="Material" uid="uid://cx0qtr6eg6u3d" path="res://Materials/animated_texture.tres" id="5_dun2r"]
 
 [sub_resource type="Resource" id="Resource_r3lo5"]
 script = ExtResource("3_dun2r")
@@ -25,48 +21,62 @@ stat_name = "hunger"
 initial_value = 50.0
 metadata/_custom_type_script = "uid://b2ugjk3g8cvtb"
 
-[node name="Root" type="Node2D" unique_id=1854834937]
+[sub_resource type="PlaneMesh" id="PlaneMesh_r3lo5"]
 
-[node name="Monster" type="Node2D" parent="." unique_id=1378678402]
-script = ExtResource("1_dun2r")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtxxq"]
+albedo_texture = ExtResource("5_ckhy6")
 
-[node name="GlobalStats" type="Node" parent="." unique_id=1334820178]
-script = ExtResource("5_4g5cr")
-stats = Array[ExtResource("3_dun2r")]([SubResource("Resource_r3lo5"), SubResource("Resource_qtxxq")])
+[node name="Root" type="Node3D" unique_id=650132332]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1830980499]
-offset_left = -325.0
-offset_top = -324.0
-offset_right = 324.0
-offset_bottom = 325.0
-texture = ExtResource("1_8pvmw")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=392951493]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=653726741]
+transform = Transform3D(0.6524609, -0.75644636, 0.04564719, 0.30859795, 0.32022482, 0.89566934, -0.69214314, -0.5703024, 0.44237188, -8.083739, 0, 0)
+light_color = Color(0.27915838, 0.16757673, 0.04543519, 1)
+light_energy = 1.35
+shadow_enabled = true
 
 [node name="CursorProxy" parent="." unique_id=859386784 instance=ExtResource("1_i04dx")]
 position = Vector2(27, 11)
 animation = &"point"
 
-[node name="FeedingTube" type="Sprite2D" parent="." unique_id=1991693349]
-position = Vector2(282, -151.00002)
-scale = Vector2(1.3476563, 1.3476563)
-texture = ExtResource("3_c3mwy")
-script = ExtResource("4_4g5cr")
+[node name="GlobalStats" type="Node" parent="." unique_id=1334820178]
+script = ExtResource("5_4g5cr")
+stats = Array[ExtResource("3_dun2r")]([SubResource("Resource_r3lo5"), SubResource("Resource_qtxxq")])
 
-[node name="Button" type="Button" parent="FeedingTube" unique_id=88308665]
-offset_left = -31.907244
-offset_top = 65.29856
-offset_right = 14.098555
-offset_bottom = 125.40291
-mouse_filter = 1
+[node name="Camera3D" type="Camera3D" parent="." unique_id=889799329]
+transform = Transform3D(1, 0, 0, 0, 0.9983378, 0.057633724, 0, -0.057633724, 0.9983378, 0, 0.7563467, 2.2825406)
 
-[node name="MouseCollider" parent="FeedingTube/Button" unique_id=101062246 instance=ExtResource("9_qtxxq")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1660765891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 1)
+material_override = ExtResource("5_dun2r")
+mesh = SubResource("PlaneMesh_r3lo5")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FeedingTube/Button/MouseCollider" unique_id=426491043]
-position = Vector2(16.217957, 20.61735)
-polygon = PackedVector2Array(-9.539703, 9.063808, -5.8295593, 6.837721, -8.055634, 0.15946007, -8.055634, -9.4869175, -8.055634, -20.617353, 27.561752, -19.875322, 22.367554, -5.0347424, 21.625519, 9.063808, 21.625519, 12.773953, -10.281723, 12.031925)
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=545618332]
+transform = Transform3D(1, 0, 0, 0, -1, 1.7484555e-07, 0, -8.742278e-08, -2, 0, 2, 1)
+material_override = SubResource("StandardMaterial3D_qtxxq")
+mesh = SubResource("PlaneMesh_r3lo5")
 
-[node name="Node2D" parent="." unique_id=478719370 instance=ExtResource("10_8fnbn")]
-position = Vector2(-180, 106)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1074272173]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 1, -1)
+material_override = ExtResource("5_dun2r")
+mesh = SubResource("PlaneMesh_r3lo5")
 
-[connection signal="mouse_entered" from="FeedingTube/Button" to="FeedingTube" method="_on_button_mouse_entered"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=980264467]
+transform = Transform3D(-8.742278e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 2, -4.371139e-08, 1.9106855e-15, 1, 1, 1)
+material_override = ExtResource("5_dun2r")
+mesh = SubResource("PlaneMesh_r3lo5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=482079194]
+transform = Transform3D(1.509958e-07, 1, -4.371139e-08, 0, -4.371139e-08, -1, -2, 7.54979e-08, -3.300118e-15, -1, 1, 1)
+material_override = ExtResource("5_dun2r")
+mesh = SubResource("PlaneMesh_r3lo5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1205841357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9906728, 0.12378663)
+light_color = Color(0.93687654, 0.8935451, 0.6227287, 1)
+light_energy = 0.479
+light_indirect_energy = 2.153
+light_volumetric_fog_energy = 2.488
+light_size = 0.058
+light_bake_mode = 1
+omni_range = 2.306
+omni_attenuation = 6.488
