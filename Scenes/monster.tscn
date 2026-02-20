@@ -1,114 +1,86 @@
 [gd_scene format=3 uid="uid://di4s1xaui1xi6"]
 
 [ext_resource type="Script" uid="uid://dvcjxvoyq3ypa" path="res://Scripts/monster.gd" id="1_bua6k"]
-[ext_resource type="Texture2D" uid="uid://c7ra12iwkptnh" path="res://Images/Mon1.png" id="2_auidl"]
-[ext_resource type="Script" uid="uid://b2ugjk3g8cvtb" path="res://Resources/stats_timer.gd" id="3_dfc53"]
-[ext_resource type="Texture2D" uid="uid://b7vep0onl8jcg" path="res://Images/Mon2.png" id="3_ko0n3"]
-[ext_resource type="Texture2D" uid="uid://cayg6sfej4jnm" path="res://Images/Mon3.png" id="4_yc8mp"]
-[ext_resource type="Texture2D" uid="uid://dw31droq4vygw" path="res://Images/Mon4.png" id="5_1mxyj"]
-[ext_resource type="Texture2D" uid="uid://b5vya6ak8dfhn" path="res://Images/Mon5.png" id="6_dfc53"]
-[ext_resource type="Texture2D" uid="uid://b2rg6j2yg5hrn" path="res://Images/Mon6.png" id="7_g0mdy"]
-[ext_resource type="Texture2D" uid="uid://d1egoxlid6sky" path="res://Images/healthmon1.png" id="8_ko0n3"]
-[ext_resource type="Texture2D" uid="uid://bf8favxoq0cbf" path="res://Images/healthmon2.png" id="9_yc8mp"]
+[ext_resource type="Texture2D" uid="uid://ce34s7mhtuqxv" path="res://Images/Sprites/BabyForm1 Idle.png" id="2_ujuxu"]
+[ext_resource type="Texture2D" uid="uid://cuvwf586si2dv" path="res://Images/babyform2.png" id="3_hyvb2"]
+[ext_resource type="Script" uid="uid://b8128fx63mi1" path="res://Scripts/set_autoplay.gd" id="4_cyu0s"]
 [ext_resource type="Texture2D" uid="uid://ck05yqj1c2jvn" path="res://Images/babyform1.png" id="10_yc8mp"]
-[ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="11_1mxyj"]
 
-[sub_resource type="Resource" id="Resource_g0mdy"]
-script = ExtResource("3_dfc53")
-stat_name = "hunger"
-initial_duration = 25.0
-initial_value = 100.0
-delta = 20.0
-metadata/_custom_type_script = "uid://b2ugjk3g8cvtb"
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyu0s"]
+atlas = ExtResource("2_ujuxu")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ocebi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ks7b"]
+atlas = ExtResource("2_ujuxu")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bua6k"]
+atlas = ExtResource("2_ujuxu")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auidl"]
+atlas = ExtResource("2_ujuxu")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8fnbn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_auidl")
+"texture": SubResource("AtlasTexture_cyu0s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ko0n3")
+"texture": SubResource("AtlasTexture_6ks7b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_yc8mp")
+"texture": SubResource("AtlasTexture_bua6k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_1mxyj")
+"texture": SubResource("AtlasTexture_auidl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_dfc53")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g0mdy")
+"texture": SubResource("AtlasTexture_bua6k")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 2.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1mxyj"]
-animations = [{
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_ko0n3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_yc8mp")
+"texture": ExtResource("10_yc8mp")
 }],
 "loop": true,
-"name": &"health",
+"name": &"static",
 "speed": 5.0
 }]
 
-[node name="monster" type="CharacterBody2D" unique_id=197105681]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyvb2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hyvb2")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[node name="Monster" type="Node3D" unique_id=1347323169]
 script = ExtResource("1_bua6k")
 
-[node name="GlobalStats" type="Node" parent="." unique_id=298173973]
-script = ExtResource("11_1mxyj")
-stat_timers = Array[ExtResource("3_dfc53")]([SubResource("Resource_g0mdy")])
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130375473]
-visible = false
-position = Vector2(894.00006, 235)
-scale = Vector2(1.3229167, 1.2262527)
-sprite_frames = SubResource("SpriteFrames_ocebi")
+[node name="form1" type="AnimatedSprite3D" parent="." unique_id=901173448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5979371, 0.2233262)
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_8fnbn")
 animation = &"idle"
-frame = 4
-frame_progress = 0.36834398
-speed_scale = 2.0
+frame_progress = 0.23518936
+speed_scale = 0.75
+script = ExtResource("4_cyu0s")
 
-[node name="Timer" type="Timer" parent="." unique_id=873334123]
-process_callback = 0
-wait_time = 0.111
-one_shot = true
-autostart = true
-
-[node name="health" type="ProgressBar" parent="." unique_id=1573885622]
-unique_name_in_owner = true
-offset_right = 521.0
-offset_bottom = 81.0
-show_percentage = false
-
-[node name="hunger" type="ProgressBar" parent="." unique_id=825022316]
-unique_name_in_owner = true
-offset_top = 83.0
-offset_right = 413.0
-offset_bottom = 157.0
-value = 100.0
-show_percentage = false
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1028480976]
-position = Vector2(776, 367)
-sprite_frames = SubResource("SpriteFrames_1mxyj")
-animation = &"health"
-frame = 1
-frame_progress = 0.035677303
-speed_scale = 0.5
-
-[node name="Babyform1" type="Sprite2D" parent="." unique_id=1374161762]
-position = Vector2(564, 266)
-scale = Vector2(3.3242183, 3.3242183)
-texture = ExtResource("10_yc8mp")
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="form2" type="AnimatedSprite3D" parent="." unique_id=1642572394]
+transform = Transform3D(0.61, 0, 0, 0, 0.61, 0, 0, 0, 0.61, 0, 0.7772347, 0.2233262)
+visible = false
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_hyvb2")
+animation = &"static"

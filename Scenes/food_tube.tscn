@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://deuvamcibo08o"]
+
+[ext_resource type="Script" uid="uid://d0oarkqct6owc" path="res://Scripts/food_tube.gd" id="1_1yeme"]
+[ext_resource type="Texture2D" uid="uid://dqhs2oyye6kqr" path="res://Feeding Tube.png" id="1_lvved"]
+[ext_resource type="Script" uid="uid://chlyuuysveld6" path="res://Scripts/mouse_collider.gd" id="2_orysb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fu36u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lvved")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FoodTube" type="Node3D" unique_id=1649837342]
+script = ExtResource("1_1yeme")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1798221943]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0.8562009, 0)
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_fu36u")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2058016259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14339557, 0.9997091, 0.016138136)
+script = ExtResource("2_orysb")
+animation = null
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D" unique_id=1018308686]
+depth = 0.03
+polygon = PackedVector2Array(-0.09055742, -1.0008931, -0.13540754, -0.9654851, -0.2227473, -0.8553269, -0.22117361, -0.77664244, -0.21881303, -0.6200603, -0.2030761, -0.52878636, -0.16452083, -0.42256236, -0.17317602, -0.35253322, -0.2424185, -0.29509354, -0.25343427, -0.18650901, -0.23533675, -0.10231662, -0.21881303, -0.022845268, -0.16885102, 0.075101495, -0.13895094, 0.13726223, -0.19403005, 0.19155455, -0.19639051, 0.2788942, -0.19245636, 0.46537638, -0.119279854, 0.5904846, -0.1523273, 0.6786113, -0.16176951, 0.75336146, -0.08072435, 0.7769668, 0.09710252, 0.7801142, 0.23558712, 0.7399852, 0.25997925, 0.65579283, 0.28673208, 0.54248714, 0.26784778, 0.4630159, 0.19860542, 0.41265774, 0.15926313, 0.40400255, 0.14352632, 0.37803662, 0.11992097, 0.29463112, 0.1364448, 0.19627559, 0.17342651, 0.09477258, 0.15847635, 0.0042854548, 0.106544614, -0.1349861, 0.07979191, -0.2042284, 0.108118296, -0.2876339, 0.1364448, -0.42139745, 0.1364448, -0.5535874, 0.09474206, -0.7487248, 0.031007536, -0.8407857, -0.021441128, -0.99810493, -0.10091248, -1.0043998)

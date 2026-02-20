@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqhs2oyye6kqr"
-path.s3tc="res://.godot/imported/Feeding Tube.png-315b444bab81fa0285d13c3c320a130d.s3tc.ctex"
+uid="uid://cuvwf586si2dv"
+path.s3tc="res://.godot/imported/babyform2.png-e1e7c96d0b322dee47b7f26c4831aea5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Feeding Tube.png"
-dest_files=["res://.godot/imported/Feeding Tube.png-315b444bab81fa0285d13c3c320a130d.s3tc.ctex"]
+source_file="res://Images/babyform2.png"
+dest_files=["res://.godot/imported/babyform2.png-e1e7c96d0b322dee47b7f26c4831aea5.s3tc.ctex"]
 
 [params]
 
