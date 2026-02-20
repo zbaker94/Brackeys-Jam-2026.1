@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://dsna741oo7ggr" path="res://Scenes/poop_bucket.tscn" id="11_fu36u"]
 [ext_resource type="PackedScene" uid="uid://1ssn5xao74ub" path="res://Scenes/wash_bucket.tscn" id="12_fu36u"]
 [ext_resource type="Script" uid="uid://bfdb2go6f3tsw" path="res://Scripts/poop_bucket.gd" id="14_imcog"]
-[ext_resource type="Texture2D" uid="uid://dqb585dlyl7nv" path="res://Images/PoopBucket1.png" id="15_epnj5"]
+[ext_resource type="Texture2D" uid="uid://fsdcnhs71vxp" path="res://Images/Sprites/PoopBucket1.png" id="15_epnj5"]
 [ext_resource type="Script" uid="uid://chlyuuysveld6" path="res://Scripts/mouse_collider.gd" id="16_ogk07"]
 [ext_resource type="Script" uid="uid://ckvwxpo63fh2s" path="res://Scripts/wash_bucket.gd" id="18_j8vvb"]
-[ext_resource type="Texture2D" uid="uid://dxs1htqwoh727" path="res://Images/WashBucket1.png" id="18_ogk07"]
+[ext_resource type="Texture2D" uid="uid://07wgbvvf2wyx" path="res://Images/Sprites/WashBucket1.png" id="18_ogk07"]
 
 [sub_resource type="Resource" id="Resource_r3lo5"]
 script = ExtResource("3_dun2r")

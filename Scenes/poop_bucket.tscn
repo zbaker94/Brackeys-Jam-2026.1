@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsna741oo7ggr"]
 
-[ext_resource type="Texture2D" uid="uid://dqb585dlyl7nv" path="res://Images/PoopBucket1.png" id="1_8201u"]
+[ext_resource type="Texture2D" uid="uid://fsdcnhs71vxp" path="res://Images/Sprites/PoopBucket1.png" id="1_8201u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fu36u"]
 animations = [{

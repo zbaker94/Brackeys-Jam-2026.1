@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://1ssn5xao74ub"]
 
-[ext_resource type="Texture2D" uid="uid://dxs1htqwoh727" path="res://Images/WashBucket1.png" id="1_r5y77"]
+[ext_resource type="Texture2D" uid="uid://07wgbvvf2wyx" path="res://Images/Sprites/WashBucket1.png" id="1_r5y77"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_20eh2"]
 animations = [{

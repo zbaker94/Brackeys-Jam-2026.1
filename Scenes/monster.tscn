@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dvcjxvoyq3ypa" path="res://Scripts/monster.gd" id="1_bua6k"]
 [ext_resource type="Texture2D" uid="uid://ce34s7mhtuqxv" path="res://Images/Sprites/BabyForm1 Idle.png" id="2_ujuxu"]
-[ext_resource type="Texture2D" uid="uid://cuvwf586si2dv" path="res://Images/babyform2.png" id="3_hyvb2"]
+[ext_resource type="Texture2D" uid="uid://pasmrts1rt2s" path="res://Images/Sprites/babyform2.png" id="3_hyvb2"]
 [ext_resource type="Script" uid="uid://b8128fx63mi1" path="res://Scripts/set_autoplay.gd" id="4_cyu0s"]
-[ext_resource type="Texture2D" uid="uid://ck05yqj1c2jvn" path="res://Images/babyform1.png" id="10_yc8mp"]
+[ext_resource type="Texture2D" uid="uid://cnmusytpuloc3" path="res://Images/Sprites/babyform1.png" id="10_yc8mp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyu0s"]
 atlas = ExtResource("2_ujuxu")
