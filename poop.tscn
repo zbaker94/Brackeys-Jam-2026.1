@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://daqjb538h2jq1"]
+
+[ext_resource type="Texture2D" uid="uid://c38e4p44qvnhq" path="res://Images/Sprites/Poop M1.png" id="1_uuxsx"]
+[ext_resource type="Texture2D" uid="uid://ph1hqmo1r0ph" path="res://Images/Sprites/Poop M2.png" id="2_3qwmj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vqr27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uuxsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3qwmj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node3D" type="Node3D" unique_id=130681536]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=659431241]
+sprite_frames = SubResource("SpriteFrames_vqr27")
+frame_progress = 0.5706895

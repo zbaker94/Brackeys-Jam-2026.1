@@ -21,8 +21,8 @@ anchor_right = 0.17300001
 anchor_bottom = 0.21200001
 offset_left = -112.46585
 offset_top = -112.486
-offset_right = 61.290253
-offset_bottom = 43.514
+offset_right = 61.290237
+offset_bottom = 43.514008
 scale = Vector2(0.79333925, 0.82074064)
 
 [connection signal="button_down" from="Sprite2D/Button" to="Sprite2D" method="_on_button_button_down"]

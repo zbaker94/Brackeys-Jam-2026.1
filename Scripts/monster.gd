@@ -2,9 +2,8 @@
 extends Node 
 
 var global_stats: GlobalStats
+var poop = preload("res://poop.tscn")
 
-#@onready var _idle = $AnimatedSprite2D
-#@onready var _health = $AnimatedSprite2D2
 
 func on_hunger_change(new_value: float) -> void:
 	if new_value == 0:
@@ -24,11 +23,19 @@ func on_stat_change(stat_name: String, new_value: float) -> void:
 
 func _ready():
 	global_stats = $"../GlobalStats"
-	#global_stats.timer_start.connect(func(timer_name: String): print("timer started with name " + timer_name))
-	
 	global_stats.stat_changed.connect(on_stat_change)
 	
 
+func inst(pos):
+	var instance = poop.instantiate()
+	instance.position = pos 
+	add_child(instance)
+	
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("poop spawn"):
+		var poop_location = inst(Vector3(-0.3,0.2,0.3))
+		print("poop spawned at" + str(poop_location))
 
 
 
