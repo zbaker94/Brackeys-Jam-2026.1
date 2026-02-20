@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://sp2prj2vnjib"]
+
+[ext_resource type="Script" uid="uid://ck4y4uq5exqvh" path="res://droppable_area.gd" id="1_m5yps"]
+
+[node name="droppable_area" type="StaticBody2D" unique_id=1781446230 groups=["dropable"]]
+script = ExtResource("1_m5yps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552351028]
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D" unique_id=1517512784]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0

@@ -18,6 +18,21 @@ var cached_viewport_size: Vector2 = Vector2.ZERO
 var cached_frame: int = -1
 var cached_animation: String = ""
 
+var hovered_object: Interactable
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed == true: 
+				print("Left mouse button pressed!")
+				frame = 1
+			if event.is_released() == true: 
+				print("Left mouse button released!")
+				frame = 0
+				
+				if hovered_object != null:
+					hovered_object._on_click()
+
 func _ready() -> void:
 	update_cursor()
 
@@ -76,8 +91,12 @@ func update_cursor() -> void:
 	cached_frame = frame
 	cached_animation = animation
 
-func entered(anim: String) -> void:
+func entered(anim: String, node_entered: Interactable) -> void:
 	animation = anim
+	node_entered._on_hover()
+	hovered_object = node_entered
 
-func exited(anim: String) -> void:
+func exited(anim: String, node_exited: Interactable) -> void:
 	animation = default_animation
+	node_exited._on_hover_exit()
+	hovered_object = null

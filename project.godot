@@ -13,9 +13,13 @@ config_version=5
 config/name="Brackeys-2026-1"
 run/main_scene="uid://bc5bk33wxk36p"
 config/features=PackedStringArray("4.6", "Forward Plus")
-boot_splash/image="uid://dg6ik0pvv85u3"
+boot_splash/image="uid://n8leis3q2oak"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1500
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -31,4 +35,5 @@ skip_text={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

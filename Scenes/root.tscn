@@ -1,10 +1,195 @@
 [gd_scene format=3 uid="uid://bc5bk33wxk36p"]
 
 [ext_resource type="PackedScene" uid="uid://cy1c824mdiqps" path="res://Scenes/cursor_proxy.tscn" id="1_i04dx"]
+[ext_resource type="Script" uid="uid://b2ugjk3g8cvtb" path="res://Resources/stats_timer.gd" id="2_ckhy6"]
+[ext_resource type="Script" uid="uid://cd0eeckf2ia8f" path="res://Resources/stat.gd" id="3_dun2r"]
+[ext_resource type="Script" uid="uid://dq0wm6sy6qljq" path="res://Scripts/global.gd" id="5_4g5cr"]
+[ext_resource type="Script" uid="uid://chciktpxpcof1" path="res://Scripts/gimbal.gd" id="5_20eh2"]
+[ext_resource type="Shader" uid="uid://4g2ecqdvs77b" path="res://Materials/animated_texture.gdshader" id="5_ckhy6"]
+[ext_resource type="Shader" uid="uid://dr2ri6q2p2w2s" path="res://Materials/fisheye.gdshader" id="5_lwnbm"]
+[ext_resource type="Texture2D" uid="uid://b5ruk0m3rd7t1" path="res://Images/bg-wall-small-noise-sheet.png" id="6_dun2r"]
+[ext_resource type="Texture2D" uid="uid://d1s8cdigxt0ww" path="res://Images/bg-floor-small-noise-sheet.png" id="7_dun2r"]
+[ext_resource type="Texture2D" uid="uid://cvvwn0738q0ek" path="res://Images/bg-floor-small-noise.png" id="8_r3lo5"]
+[ext_resource type="PackedScene" uid="uid://di4s1xaui1xi6" path="res://Scenes/monster.tscn" id="9_8fnbn"]
+[ext_resource type="PackedScene" uid="uid://deuvamcibo08o" path="res://Scenes/food_tube.tscn" id="10_8fnbn"]
+[ext_resource type="PackedScene" uid="uid://dsna741oo7ggr" path="res://Scenes/poop_bucket.tscn" id="11_fu36u"]
+[ext_resource type="PackedScene" uid="uid://1ssn5xao74ub" path="res://Scenes/wash_bucket.tscn" id="12_fu36u"]
 
-[node name="Root" type="Node2D" unique_id=1854834937]
+[sub_resource type="Resource" id="Resource_r3lo5"]
+script = ExtResource("3_dun2r")
+stat_name = "health"
+initial_value = 100.0
+metadata/_custom_type_script = "uid://cd0eeckf2ia8f"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=392951493]
+[sub_resource type="Resource" id="Resource_qtxxq"]
+script = ExtResource("2_ckhy6")
+initial_duration = 10.0
+delta = 4.0
+stat_name = "hunger"
+initial_value = 100.0
+metadata/_custom_type_script = "uid://b2ugjk3g8cvtb"
+
+[sub_resource type="Environment" id="Environment_ckhy6"]
+tonemap_mode = 3
+ssao_enabled = true
+ssao_intensity = 0.9
+fog_mode = 1
+fog_sun_scatter = 0.05
+fog_density = 1.0
+fog_depth_curve = 0.35355344
+fog_depth_begin = 196.3
+fog_depth_end = 196.3
+volumetric_fog_density = 0.0378
+volumetric_fog_albedo = Color(0.34407577, 0.34407574, 0.34407574, 1)
+volumetric_fog_gi_inject = 0.49
+adjustment_enabled = true
+adjustment_brightness = 0.81
+adjustment_contrast = 1.03
+adjustment_saturation = 1.13
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20eh2"]
+shader = ExtResource("5_lwnbm")
+shader_parameter/fish_intensity = 1.48800007068
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckhy6"]
+render_priority = 0
+shader = ExtResource("5_ckhy6")
+shader_parameter/albedo_texture = ExtResource("7_dun2r")
+shader_parameter/rows = 1.0
+shader_parameter/columns = 24.0
+shader_parameter/fps = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dun2r"]
+material = SubResource("ShaderMaterial_ckhy6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtxxq"]
+render_priority = 0
+shader = ExtResource("5_ckhy6")
+shader_parameter/albedo_texture = ExtResource("6_dun2r")
+shader_parameter/rows = 1.0
+shader_parameter/columns = 24.0
+shader_parameter/fps = 12.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8fnbn"]
+material = SubResource("ShaderMaterial_qtxxq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a6f85"]
+render_priority = 0
+shader = ExtResource("5_ckhy6")
+shader_parameter/albedo_texture = ExtResource("8_r3lo5")
+shader_parameter/rows = 4.0
+shader_parameter/columns = 4.0
+shader_parameter/fps = 24.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fu36u"]
+material = SubResource("ShaderMaterial_a6f85")
+
+[node name="Root" type="Node3D" unique_id=650132332]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=653726741]
+transform = Transform3D(0.83626187, -0.5190387, -0.17681831, 0.42028606, 0.39963165, 0.8146498, -0.35217255, -0.7555747, 0.55234146, -8.083739, 0, 0)
+light_color = Color(0.27915838, 0.16757673, 0.04543519, 1)
+light_energy = 1.35
 
 [node name="CursorProxy" parent="." unique_id=859386784 instance=ExtResource("1_i04dx")]
+position = Vector2(27, 11)
 animation = &"point"
+min_cursor_size = 32.0
+max_cursor_size = 240.0
+
+[node name="GlobalStats" type="Node" parent="." unique_id=1334820178]
+script = ExtResource("5_4g5cr")
+stats = Array[ExtResource("3_dun2r")]([SubResource("Resource_r3lo5"), SubResource("Resource_qtxxq")])
+
+[node name="Gimbal" type="Node3D" parent="." unique_id=656726240]
+transform = Transform3D(0.9998157, -0.019197444, 0, 0.019197444, 0.9998157, 0, 0, 0, 1, 0, 0.28552988, 1.050118)
+script = ExtResource("5_20eh2")
+x_rotation_range = 4.0
+y_rotation_range = 8.0
+smoothing = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="Gimbal" unique_id=889799329]
+transform = Transform3D(1, 0, 0, 0, 0.9766723, -0.21473533, 0, 0.21473533, 0.9766723, 0, 0, 0.19294238)
+environment = SubResource("Environment_ckhy6")
+
+[node name="PostProcessing" type="CanvasLayer" parent="." unique_id=569288304]
+
+[node name="ColorRect" type="ColorRect" parent="PostProcessing" unique_id=179174603]
+material = SubResource("ShaderMaterial_20eh2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1205841357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3488365, -0.14756936)
+light_color = Color(0.93687654, 0.8935451, 0.6227287, 1)
+light_energy = 0.256
+light_indirect_energy = 2.153
+light_volumetric_fog_energy = 2.488
+light_size = 0.058
+light_bake_mode = 1
+omni_range = 1.975
+omni_attenuation = 6.488
+
+[node name="Room" type="Node3D" parent="." unique_id=1904053292]
+
+[node name="Floor1" type="MeshInstance3D" parent="Room" unique_id=1858628678]
+mesh = SubResource("PlaneMesh_dun2r")
+
+[node name="Floor2" type="MeshInstance3D" parent="Room" unique_id=15686809]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 2)
+mesh = SubResource("PlaneMesh_dun2r")
+
+[node name="Wall1" type="MeshInstance3D" parent="Room" unique_id=428215062]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.99999994, -1)
+mesh = SubResource("PlaneMesh_8fnbn")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room" unique_id=2083133947]
+transform = Transform3D(4.371139e-08, 1, -4.2351647e-22, 4.371139e-08, 0, 1, 1, -4.371139e-08, -4.3711392e-08, -0.99999994, 0.9999999, 0)
+mesh = SubResource("PlaneMesh_8fnbn")
+
+[node name="Wall3" type="MeshInstance3D" parent="Room" unique_id=1361531436]
+transform = Transform3D(4.371139e-08, 1, -4.2351647e-22, 4.371139e-08, 0, 1, 1, -4.371139e-08, -4.3711392e-08, -0.9999999, 0.9999998, 2)
+mesh = SubResource("PlaneMesh_8fnbn")
+
+[node name="Wall4" type="MeshInstance3D" parent="Room" unique_id=1069943902]
+transform = Transform3D(1.3113416e-07, -1, 0, -4.371138e-08, -7.642741e-15, -1, 1, 1.3113416e-07, -4.3711385e-08, 1, 0.9999999, -8.742278e-08)
+mesh = SubResource("PlaneMesh_8fnbn")
+
+[node name="Wall5" type="MeshInstance3D" parent="Room" unique_id=1256955079]
+transform = Transform3D(1.3113416e-07, -1, 0, -4.371138e-08, -7.642741e-15, -1, 1, 1.3113416e-07, -4.3711385e-08, 1.0000001, 0.9999998, 1.9999999)
+mesh = SubResource("PlaneMesh_8fnbn")
+
+[node name="Ceiling1" type="MeshInstance3D" parent="Room" unique_id=1560608021]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 2, 0)
+mesh = SubResource("PlaneMesh_fu36u")
+
+[node name="Ceiling2" type="MeshInstance3D" parent="Room" unique_id=1873451039]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 2.0000002, 2)
+mesh = SubResource("PlaneMesh_fu36u")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Room" unique_id=210030394]
+transform = Transform3D(0.92321694, 0.011869396, -0.38409588, -0.048815, 0.9950479, -0.08658311, 0.38116613, 0.098684624, 0.9192245, -0.3655463, 0.6608908, 1.7279838)
+light_color = Color(0.64954317, 0.36112788, 0.22940192, 1)
+light_energy = 0.846
+shadow_enabled = true
+
+[node name="Monster" parent="." unique_id=1347323169 instance=ExtResource("9_8fnbn")]
+
+[node name="FoodTube" parent="." unique_id=1649837342 instance=ExtResource("10_8fnbn")]
+transform = Transform3D(0.6783777, 0, -0.7347133, 0, 1, 0, 0.7347133, 0, 0.6783777, 0.7376822, 0.21811926, 0.26171407)
+
+[node name="Area3D" parent="FoodTube" index="1" unique_id=2058016259 node_paths=PackedStringArray("cursor_proxy")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.06375171, 0.9997091, -0.031972118)
+cursor_proxy = NodePath("../../CursorProxy")
+
+[node name="PoopBucket" parent="." unique_id=1945986445 instance=ExtResource("11_fu36u")]
+transform = Transform3D(0.99696505, 0, 0.0778501, 0, 1, 0, -0.0778501, 0, 0.99696505, -0.6976713, 0.3304913, -0.08937161)
+
+[node name="WashBucket" parent="." unique_id=251337111 instance=ExtResource("12_fu36u")]
+transform = Transform3D(0.99696505, 0, 0.0778501, 0, 1, 0, -0.0778501, 0, 0.99696505, -0.8722858, 0.3071385, 0.11273198)
+
+[editable path="FoodTube"]

@@ -1,42 +1,55 @@
 # starts and stops timer for attributes; custom cursor  
-extends CharacterBody2D
+extends Node 
 
-@onready var _idle = $AnimatedSprite2D
-@onready var _health = $AnimatedSprite2D2
-var health = 100
-var hunger = 100
-var activity = 100
-var arrow = load("res://Images/cursor.png")
-var monster_atts = [health,hunger,activity]
+var global_stats: GlobalStats
+
+#@onready var _idle = $AnimatedSprite2D
+#@onready var _health = $AnimatedSprite2D2
+
+func on_hunger_change(new_value: float) -> void:
+	if new_value == 0:
+		print("im starving: " + str(new_value))
+	elif new_value <= 25:
+		print("im not feeling too good: " + str(new_value))
+	elif new_value <= 75:
+		print("I could eat: " + str(new_value))
+	else:
+		print("Im perfectly fine: " + str(new_value))
+
+func on_stat_change(stat_name: String, new_value: float) -> void:
+		if stat_name == "hunger":
+			on_hunger_change(new_value)
+		elif stat_name == "health":
+			print_debug("health set to " + str(new_value))
 
 func _ready():
-	Input.set_custom_mouse_cursor(arrow)
-	$Timer.start()
-	$Timer.wait_time = health
-	print("your time has started now")
+	global_stats = $"../GlobalStats"
+	#global_stats.timer_start.connect(func(timer_name: String): print("timer started with name " + timer_name))
+	
+	global_stats.stat_changed.connect(on_stat_change)
+	
 
-func _process(_delta):
-	$health.value = $Timer.time_left 
-	if $Timer.time_left and hunger <= 50:
-		print("im not feeling too good")
-		_health.play("health") 
-		_idle.play("idle")
-		
-	else:
-		print("Im prerfectly fine")
-		_idle.play("idle")
-		
 
-func _on_timer_timeout():
-	print("TIMER done ")
-	$Timer.start()
+
+
+
+
+
+
 
 
 # TODO:
+# Food pipe emitting signal waiting for food item
+# When food bar gets to certain point play hunger animation
+# When food gets added to pipe fill back food bar (possibly reset the timer?)
+# Click and drag food item to food pipe 
+# change form from mon1 to mon2 
+# Spawn poop on screen
+# Drag to poop bucket 
+# If to many spawns
+# Play stink animation
 
-# health loss if hunger and being bored gets too low
-# clickable & drag item to monster
-# animations for low resources
-# custom crusor
-# day cycle
-# game end results
+# If poop and food are down tick health down over time stop once poop < 4
+# Emit signal for wash rag from bucket
+# Grab wash rag from bucket click on monster
+# If moster ate food and washrag was used increase health 

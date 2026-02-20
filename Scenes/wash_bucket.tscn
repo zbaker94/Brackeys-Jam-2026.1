@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://1ssn5xao74ub"]
+
+[ext_resource type="Texture2D" uid="uid://dxs1htqwoh727" path="res://Images/WashBucket1.png" id="1_r5y77"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20eh2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r5y77")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WashBucket" type="Node3D" unique_id=251337111]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1210530620]
+transform = Transform3D(0.9959207, 0, 0.0902328, 0, 1, 0, -0.0902328, 0, 0.9959207, 0, 0, 0)
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_20eh2")

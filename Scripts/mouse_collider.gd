@@ -1,8 +1,11 @@
-extends Area2D
+extends Area3D
 
 @export var animation: String = "tap"
 
 @export var cursor_proxy: SpriteCursor 
+
+
+var parent_interactable: Interactable
 
 
 func _ready() -> void:
@@ -16,12 +19,18 @@ func _ready() -> void:
 	
 	assert(cursor_proxy != null, "Must set cursor_proxy on Mouse Collider object or have a CursorProxy node at root")
 	
+	var parent_node_3d = get_parent_node_3d()
+	
+	assert(parent_node_3d is Interactable, "Parent of mouse collider must be of type Interactable")
+	
+	parent_interactable = parent_node_3d
+	
 	# Connect signals
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
 func _on_mouse_entered() -> void:
-	cursor_proxy.entered(animation)
+	cursor_proxy.entered(animation, parent_interactable)
 
 func _on_mouse_exited() -> void:
-	cursor_proxy.exited(animation)
+	cursor_proxy.exited(animation, parent_interactable)
