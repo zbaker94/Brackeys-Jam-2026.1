@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bqxm7w2v8k5n3"]
+
+[ext_resource type="Texture2D" uid="uid://cywwpkicsl36m" path="res://Images/Sprites/Poop_sphere_texture_brightest.png" id="1_bmvvk"]
+[ext_resource type="Shader" uid="uid://dv4tif6jw2v63" path="res://Materials/poop.gdshader" id="2_33ubq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("2_33ubq")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_bmvvk")
+shader_parameter/albedo_texture_size = Vector2i(32, 32)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.15
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/lumpiness = 0.3350000159125
+shader_parameter/lump_scale = 1.02100004523762
+shader_parameter/squish_variation = 0.38000001805

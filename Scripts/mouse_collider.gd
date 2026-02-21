@@ -1,6 +1,8 @@
 extends Area3D
 
-@export var animation: String = "tap"
+@export var animation: SpriteCursor.CursorAnimation = SpriteCursor.CursorAnimation.TAP
+
+@export var do_not_change_animation: bool = false
 
 @export var cursor_proxy: SpriteCursor 
 
@@ -30,7 +32,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 func _on_mouse_entered() -> void:
-	cursor_proxy.entered(animation, parent_interactable)
+	cursor_proxy.entered(animation, parent_interactable, do_not_change_animation)
 
 func _on_mouse_exited() -> void:
-	cursor_proxy.exited(animation, parent_interactable)
+	cursor_proxy.exited(animation, parent_interactable, do_not_change_animation)

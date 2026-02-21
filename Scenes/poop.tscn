@@ -1,24 +1,41 @@
 [gd_scene format=3 uid="uid://daqjb538h2jq1"]
 
-[ext_resource type="Texture2D" uid="uid://c38e4p44qvnhq" path="res://Images/Sprites/Poop M1.png" id="1_uuxsx"]
-[ext_resource type="Texture2D" uid="uid://ph1hqmo1r0ph" path="res://Images/Sprites/Poop M2.png" id="2_3qwmj"]
+[ext_resource type="PhysicsMaterial" uid="uid://d3xal6o4cryn8" path="res://Materials/poop_physics_material.tres" id="1_33ubq"]
+[ext_resource type="Script" uid="uid://wjpxaj0vq8wx" path="res://Scripts/poop.gd" id="1_r4po0"]
+[ext_resource type="SphereMesh" uid="uid://ds76omw0tsiwc" path="res://Materials/poop_mesh.tres" id="3_3co1v"]
+[ext_resource type="Script" uid="uid://chlyuuysveld6" path="res://Scripts/mouse_collider.gd" id="4_3co1v"]
+[ext_resource type="Script" uid="uid://du32k1mkx8pwh" path="res://Scenes/interactable_poop.gd" id="4_7xh6s"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vqr27"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_uuxsx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_3qwmj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="SphereShape3D" id="SphereShape3D_bmvvk"]
+radius = 0.041797843
 
-[node name="Node3D" type="Node3D" unique_id=130681536]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7xh6s"]
+radius = 0.051746152
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=659431241]
-sprite_frames = SubResource("SpriteFrames_vqr27")
-frame_progress = 0.5706895
+[node name="Poop" type="RigidBody3D" unique_id=761689694 groups=["poop"]]
+disable_mode = 1
+mass = 0.7
+physics_material_override = ExtResource("1_33ubq")
+gravity_scale = 0.566
+script = ExtResource("1_r4po0")
+attraction_radius = 0.3
+attraction_strength = 0.01
+min_distance = 0.2
+max_merges = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1532717532]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+mesh = ExtResource("3_3co1v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1918103172]
+shape = SubResource("SphereShape3D_bmvvk")
+
+[node name="Interactable" type="Node3D" parent="." unique_id=581010095]
+script = ExtResource("4_7xh6s")
+
+[node name="Area3D" type="Area3D" parent="Interactable" unique_id=1875609369]
+script = ExtResource("4_3co1v")
+animation = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable/Area3D" unique_id=2072962092]
+shape = SubResource("SphereShape3D_7xh6s")

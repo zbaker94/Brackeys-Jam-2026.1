@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0hd14jfbav7p"
-path="res://.godot/imported/Poop L1.png-2afae8fd39df8a72c1a77d7abebfcaf2.ctex"
+uid="uid://cn2pmjonbxyg5"
+path="res://.godot/imported/WashBucketIdle.png-ecc40539ce5a8cc42deec55fbe77016a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Poop L1.png"
-dest_files=["res://.godot/imported/Poop L1.png-2afae8fd39df8a72c1a77d7abebfcaf2.ctex"]
+source_file="res://Images/Sprites/WashBucketIdle.png"
+dest_files=["res://.godot/imported/WashBucketIdle.png-ecc40539ce5a8cc42deec55fbe77016a.ctex"]
 
 [params]
 

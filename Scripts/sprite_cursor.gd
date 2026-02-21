@@ -2,7 +2,13 @@ extends AnimatedSprite2D
 
 class_name SpriteCursor
 
-@export var default_animation: String = "point"
+enum CursorAnimation {
+	POINT,
+	GRAB,
+	TAP
+}
+
+@export var default_animation: CursorAnimation = CursorAnimation.POINT
 
 # Cursor size as a percentage of the smallest viewport dimension
 @export var cursor_size_percent: float = 0.05  # 5% of viewport
@@ -19,6 +25,12 @@ var cached_frame: int = -1
 var cached_animation: String = ""
 
 var hovered_object: Interactable
+var hovered_animation: CursorAnimation = CursorAnimation.POINT
+var dragged_object: Interactable = null
+var is_dragging: bool = false
+var drag_start_position: Vector2 = Vector2.ZERO
+var mouse_pressed: bool = false
+@export var drag_threshold: float = 5.0  # Pixels to move before considering it a drag
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -26,12 +38,40 @@ func _input(event):
 			if event.pressed == true: 
 				print("Left mouse button pressed!")
 				frame = 1
+				mouse_pressed = true
+				drag_start_position = event.position
+				
 			if event.is_released() == true: 
 				print("Left mouse button released!")
 				frame = 0
+				mouse_pressed = false
 				
-				if hovered_object != null:
+				# Update animation based on hover state
+				if hovered_object == null:
+					animation = CursorAnimation.keys()[default_animation].to_lower()
+				else:
+					animation = CursorAnimation.keys()[hovered_animation].to_lower()
+				
+				# Handle drop or click
+				if is_dragging and dragged_object != null:
+					var drag_distance = event.position.distance_to(drag_start_position)
+					dragged_object._on_drop(drag_start_position, event.position, drag_distance)
+					dragged_object = null
+				elif hovered_object != null:
 					hovered_object._on_click()
+				
+				is_dragging = false
+	
+	# Detect drag motion
+	if event is InputEventMouseMotion and mouse_pressed:
+		if not is_dragging:
+			var drag_distance = event.position.distance_to(drag_start_position)
+			if drag_distance > drag_threshold:
+				# Start dragging
+				is_dragging = true
+				if hovered_object != null:
+					dragged_object = hovered_object
+					dragged_object._on_drag(drag_start_position, event.position, drag_distance)
 
 func _ready() -> void:
 	update_cursor()
@@ -91,12 +131,18 @@ func update_cursor() -> void:
 	cached_frame = frame
 	cached_animation = animation
 
-func entered(anim: String, node_entered: Interactable) -> void:
-	animation = anim
+func entered(anim: CursorAnimation, node_entered: Interactable, do_not_change_animation: bool) -> void:
+	hovered_animation = anim
+	if !do_not_change_animation and !mouse_pressed:
+		animation = CursorAnimation.keys()[anim].to_lower()
 	node_entered._on_hover()
 	hovered_object = node_entered
 
-func exited(anim: String, node_exited: Interactable) -> void:
-	animation = default_animation
+func exited(anim: CursorAnimation, node_exited: Interactable, do_not_change_animation: bool) -> void:
+	if !do_not_change_animation and !mouse_pressed:
+		animation = CursorAnimation.keys()[default_animation].to_lower()
 	node_exited._on_hover_exit()
-	hovered_object = null
+	
+	# Only clear hovered_object if it matches the exiting node
+	if hovered_object == node_exited:
+		hovered_object = null

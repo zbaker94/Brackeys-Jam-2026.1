@@ -14,11 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://deuvamcibo08o" path="res://Scenes/food_tube.tscn" id="10_8fnbn"]
 [ext_resource type="PackedScene" uid="uid://dsna741oo7ggr" path="res://Scenes/poop_bucket.tscn" id="11_fu36u"]
 [ext_resource type="PackedScene" uid="uid://1ssn5xao74ub" path="res://Scenes/wash_bucket.tscn" id="12_fu36u"]
-[ext_resource type="Script" uid="uid://bfdb2go6f3tsw" path="res://Scripts/poop_bucket.gd" id="14_imcog"]
-[ext_resource type="Texture2D" uid="uid://fsdcnhs71vxp" path="res://Images/Sprites/PoopBucket1.png" id="15_epnj5"]
-[ext_resource type="Script" uid="uid://chlyuuysveld6" path="res://Scripts/mouse_collider.gd" id="16_ogk07"]
 [ext_resource type="Script" uid="uid://ckvwxpo63fh2s" path="res://Scripts/wash_bucket.gd" id="18_j8vvb"]
-[ext_resource type="Texture2D" uid="uid://07wgbvvf2wyx" path="res://Images/Sprites/WashBucket1.png" id="18_ogk07"]
 
 [sub_resource type="Resource" id="Resource_r3lo5"]
 script = ExtResource("3_dun2r")
@@ -56,6 +52,10 @@ adjustment_saturation = 1.13
 shader = ExtResource("5_lwnbm")
 shader_parameter/fish_intensity = 1.48800007068
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hv1ua"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_epnj5"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckhy6"]
 render_priority = 0
 shader = ExtResource("5_ckhy6")
@@ -88,28 +88,6 @@ shader_parameter/fps = 24.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fu36u"]
 material = SubResource("ShaderMaterial_a6f85")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_j8vvb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_epnj5")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_epnj5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_ogk07")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Root" type="Node3D" unique_id=650132332]
 
@@ -163,7 +141,41 @@ omni_attenuation = 6.488
 
 [node name="Room" type="Node3D" parent="." unique_id=1904053292]
 
-[node name="Floor1" type="MeshInstance3D" parent="Room" unique_id=1858628678]
+[node name="InvisWallL" type="StaticBody3D" parent="Room" unique_id=1984843621]
+transform = Transform3D(0.9865494, 0, -0.16346371, 0, 1, 0, 0.16346371, 0, 0.9865494, 0.08774628, 0, 0.014538888)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/InvisWallL" unique_id=2027906875]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.53201383, 2.3255064e-08, 0)
+shape = SubResource("WorldBoundaryShape3D_hv1ua")
+
+[node name="InvisWallR" type="StaticBody3D" parent="Room" unique_id=67415468]
+transform = Transform3D(-0.9947172, -8.742278e-08, 0.102653645, 8.696094e-08, -1, -8.974267e-09, 0.102653645, 0, 0.9947172, 0.14731264, 8.688178e-08, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/InvisWallR" unique_id=658209429]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.53201383, 2.3255064e-08, 0)
+shape = SubResource("WorldBoundaryShape3D_hv1ua")
+
+[node name="InvisWallB" type="StaticBody3D" parent="Room" unique_id=1869631009]
+transform = Transform3D(4.371139e-08, -8.742277e-08, -1, 0, -1, 8.742278e-08, -1, 0, -4.371139e-08, 0.76680523, 3.2724017e-08, 0.18431026)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/InvisWallB" unique_id=427646057]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.53201383, 2.3255064e-08, 0)
+shape = SubResource("WorldBoundaryShape3D_hv1ua")
+
+[node name="InvisWallF" type="StaticBody3D" parent="Room" unique_id=711923945]
+transform = Transform3D(-4.3711374e-08, 8.7422784e-08, -1, 8.940697e-08, 1, 8.742277e-08, 1, -8.940697e-08, -4.371139e-08, 0.76680523, 8.58014e-08, 0.7779708)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/InvisWallF" unique_id=1750453039]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.53201383, 2.3255064e-08, 0)
+shape = SubResource("WorldBoundaryShape3D_hv1ua")
+
+[node name="Floor1" type="StaticBody3D" parent="Room" unique_id=526237434]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor1" unique_id=1268180051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999923, 0.0040584803, 0.15000004)
+shape = SubResource("WorldBoundaryShape3D_epnj5")
+
+[node name="Floor1Mesh" type="MeshInstance3D" parent="Room/Floor1" unique_id=1858628678]
 mesh = SubResource("PlaneMesh_dun2r")
 
 [node name="Floor2" type="MeshInstance3D" parent="Room" unique_id=15686809]
@@ -206,48 +218,34 @@ shadow_enabled = true
 
 [node name="Monster" parent="." unique_id=1347323169 instance=ExtResource("9_8fnbn")]
 
+[node name="PoopSpawner" parent="Monster" index="2" unique_id=1201847577 node_paths=PackedStringArray("global_stats")]
+global_stats = NodePath("../../GlobalStats")
+
 [node name="FoodTube" parent="." unique_id=1649837342 instance=ExtResource("10_8fnbn")]
 transform = Transform3D(0.6783777, 0, -0.7347133, 0, 1, 0, 0.7347133, 0, 0.6783777, 0.7376822, 0.21811926, 0.26171407)
 
 [node name="Area3D" parent="FoodTube" index="1" unique_id=2058016259 node_paths=PackedStringArray("cursor_proxy")]
-transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.06375171, 0.9997091, -0.031972118)
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0.09220797, 0.9997091, 0.008606989)
+animation = 2
 cursor_proxy = NodePath("../../CursorProxy")
+
+[node name="CollisionShape3D" parent="FoodTube/Area3D" index="0" unique_id=1339502667]
+transform = Transform3D(1, 0, 3.3527613e-08, 0, 1, 0, -3.3527613e-08, 0, 1, 0.03004485, 0.009765625, 0.031081047)
 
 [node name="PoopBucket" parent="." unique_id=1945986445 instance=ExtResource("11_fu36u")]
-transform = Transform3D(0.99696505, 0, 0.0778501, 0, 1, 0, -0.0778501, 0, 0.99696505, -0.6976713, 0.3304913, -0.08937161)
-script = ExtResource("14_imcog")
+transform = Transform3D(0.9559929, 0, 0.29338968, 0, 1, 0, -0.29338968, 0, 0.9559929, -0.60749567, 0.3304913, 0.36653465)
 
-[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="PoopBucket" unique_id=1280799489]
-visible = false
-sprite_frames = SubResource("SpriteFrames_j8vvb")
+[node name="Area3D" parent="PoopBucket" index="2" unique_id=481412954]
+transform = Transform3D(0.86727065, 0, 0.497837, 0, 1, 0, -0.497837, 0, 0.86727065, -0.045856815, 0, 0.0858115)
 
-[node name="Area3D" type="Area3D" parent="PoopBucket" unique_id=1111355378 node_paths=PackedStringArray("cursor_proxy")]
-transform = Transform3D(0.8660254, 0, 0.4999999, 0, 1, 0, -0.4999999, 0, 0.8660254, 0.06375182, 0.81071687, -0.031972125)
-script = ExtResource("16_ogk07")
-animation = null
-cursor_proxy = NodePath("../../CursorProxy")
-
-[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="PoopBucket/Area3D" unique_id=1556730609]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090648234, -0.26416242, -0.4612047)
-polygon = PackedVector2Array(-0.23523623, -0.4583803, -0.049012482, -0.44892582, -0.018729478, -0.5026941, -0.035639107, -0.69600564, -0.05156052, -0.78501594, -0.09677613, -0.8040805, -0.222359, -0.77409303, -0.27783573, -0.74015224, -0.27460313, -0.64977264, -0.27353275, -0.55707276)
+[node name="CollisionShape3D" parent="PoopBucket/Area3D" index="0" unique_id=809894]
+transform = Transform3D(0.98901325, 0, -0.14782667, 0, 1, 0, 0.14782667, 0, 0.98901325, -0.0049352646, -0.10961914, 0.0851593)
 
 [node name="WashBucket" parent="." unique_id=251337111 instance=ExtResource("12_fu36u")]
 transform = Transform3D(0.99696505, 0, 0.0778501, 0, 1, 0, -0.0778501, 0, 0.99696505, -0.8722858, 0.3071385, 0.11273198)
+visible = false
 script = ExtResource("18_j8vvb")
 
-[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="WashBucket" unique_id=136261761]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0002233386, 0, -0.0028603002)
-visible = false
-sprite_frames = SubResource("SpriteFrames_epnj5")
-
-[node name="Area3D" type="Area3D" parent="WashBucket" unique_id=732312419 node_paths=PackedStringArray("cursor_proxy")]
-transform = Transform3D(0.9023221, 0, 0.43106234, 0, 1, 0, -0.43106234, 0, 0.9023221, 0.9444619, 0.6925706, -0.07139431)
-script = ExtResource("16_ogk07")
-animation = null
-cursor_proxy = NodePath("../../CursorProxy")
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="WashBucket/Area3D" unique_id=500430008]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.364794, -0.37299484, -0.7728776)
-polygon = PackedVector2Array(0.23321438, -0.28703982, 0.24249339, -0.22514796, 0.26945883, -0.21343946, 0.3363133, -0.20327139, 0.3946331, -0.20004267, 0.45867163, -0.21785814, 0.4647628, -0.26505825, 0.45938265, -0.32575464, 0.47377563, -0.38304877, 0.46479565, -0.41144794, 0.4558277, -0.44515568, 0.41459328, -0.4498666, 0.3716619, -0.45809215, 0.30384123, -0.4517234, 0.27352798, -0.4335338, 0.2609476, -0.38723928)
-
+[editable path="Monster"]
 [editable path="FoodTube"]
+[editable path="PoopBucket"]

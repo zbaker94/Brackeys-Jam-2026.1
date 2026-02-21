@@ -1,6 +1,30 @@
 [gd_scene format=3 uid="uid://dsna741oo7ggr"]
 
 [ext_resource type="Texture2D" uid="uid://fsdcnhs71vxp" path="res://Images/Sprites/PoopBucket1.png" id="1_8201u"]
+[ext_resource type="Script" uid="uid://bfdb2go6f3tsw" path="res://Scripts/poop_bucket.gd" id="1_otk1o"]
+[ext_resource type="Texture2D" uid="uid://6pgxpe0de84y" path="res://Images/Sprites/PoopBucketIdle.png" id="2_byk3y"]
+[ext_resource type="Script" uid="uid://b8128fx63mi1" path="res://Scripts/set_autoplay.gd" id="3_snb18"]
+[ext_resource type="Script" uid="uid://chlyuuysveld6" path="res://Scripts/mouse_collider.gd" id="5_qkn15"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snb18"]
+atlas = ExtResource("2_byk3y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otk1o"]
+atlas = ExtResource("2_byk3y")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkn15"]
+atlas = ExtResource("2_byk3y")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6g6y"]
+atlas = ExtResource("2_byk3y")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctmrn"]
+atlas = ExtResource("2_byk3y")
+region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fu36u"]
 animations = [{
@@ -11,11 +35,50 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snb18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otk1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkn15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6g6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctmrn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
-[node name="PoopBucket" type="Node3D" unique_id=1945986445]
+[sub_resource type="BoxShape3D" id="BoxShape3D_otk1o"]
+size = Vector3(0.32755852, 0.4038086, 0.15359497)
+
+[node name="PoopBucket" type="Node3D" unique_id=1945986445 node_paths=PackedStringArray("spot_light")]
+script = ExtResource("1_otk1o")
+spot_light = NodePath("SpotLight3D")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=122590133]
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fu36u")
+animation = &"idle"
+script = ExtResource("3_snb18")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=445557161]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.04876387, 1.1787857, -0.11750582)
+spot_angle = 13.100033
+
+[node name="Area3D" type="Area3D" parent="." unique_id=481412954]
+script = ExtResource("5_qkn15")
+do_not_change_animation = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=809894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0049352646, -0.10961914, 0.0851593)
+shape = SubResource("BoxShape3D_otk1o")

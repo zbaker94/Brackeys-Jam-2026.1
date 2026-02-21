@@ -14,7 +14,7 @@ func _on_hover_exit()
 func _on_click()
 
 @abstract
-func _on_drag()
+func _on_drag(start_position: Vector2, current_position: Vector2, drag_distance: float)
 
 @abstract
-func _on_drop()
+func _on_drop(start_position: Vector2, end_position: Vector2, drag_distance: float)
