@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvcjxvoyq3ypa" path="res://Scripts/monster.gd" id="1_bua6k"]
 [ext_resource type="Texture2D" uid="uid://ce34s7mhtuqxv" path="res://Images/Sprites/BabyForm1 Idle.png" id="2_ujuxu"]
+[ext_resource type="Texture2D" uid="uid://b77muxpnwq5nt" path="res://Images/Sprites/BabyForm1Hungry.png" id="3_bua6k"]
 [ext_resource type="Texture2D" uid="uid://pasmrts1rt2s" path="res://Images/Sprites/babyform2.png" id="3_hyvb2"]
 [ext_resource type="Script" uid="uid://b8128fx63mi1" path="res://Scripts/set_autoplay.gd" id="4_cyu0s"]
 [ext_resource type="Script" uid="uid://cowo4k836g7t7" path="res://Scripts/poop_spawner.gd" id="6_6ks7b"]
@@ -22,6 +23,30 @@ region = Rect2(256, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_auidl"]
 atlas = ExtResource("2_ujuxu")
 region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko0n3"]
+atlas = ExtResource("3_bua6k")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc8mp"]
+atlas = ExtResource("3_bua6k")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mxyj"]
+atlas = ExtResource("3_bua6k")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfc53"]
+atlas = ExtResource("3_bua6k")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0mdy"]
+atlas = ExtResource("3_bua6k")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppmea"]
+atlas = ExtResource("3_bua6k")
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8fnbn"]
 animations = [{
@@ -47,6 +72,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ko0n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc8mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mxyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfc53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0mdy")
+}, {
+"duration": 2.3,
+"texture": SubResource("AtlasTexture_ppmea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0mdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfc53")
+}],
+"loop": false,
+"name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("10_yc8mp")
 }],
 "loop": true,
@@ -68,16 +122,18 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_cyu0s"]
 size = Vector3(0.19830322, 0.09542084, 0.2115326)
 
-[node name="Monster" type="Node3D" unique_id=1347323169]
+[node name="Monster" type="Node3D" unique_id=1347323169 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_bua6k")
+sprite = NodePath("form1")
 
 [node name="form1" type="AnimatedSprite3D" parent="." unique_id=901173448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5979371, 0.2233262)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_8fnbn")
-animation = &"idle"
-frame_progress = 0.23518936
+animation = &"sad"
+frame = 7
+frame_progress = 1.0
 speed_scale = 0.75
 script = ExtResource("4_cyu0s")
 
