@@ -2,6 +2,7 @@
 extends Node 
 
 @export var sprite: AnimatedSprite3D
+@export var audio: AudioStreamPlayer3D
 
 var global_stats: GlobalStats
 
@@ -13,6 +14,9 @@ func _play_idle():
 func _play_sad():
 	sprite.animation = "sad"
 	sprite.play()
+	
+	audio.play()
+	
 	sprite.animation_finished.connect(_play_idle)
 
 func on_hunger_change(new_value: float) -> void:
@@ -36,3 +40,4 @@ func on_stat_change(stat_name: String, new_value: float) -> void:
 func _ready():
 	global_stats = $"../GlobalStats"
 	global_stats.stat_changed.connect(on_stat_change)
+	audio.autoplay = false

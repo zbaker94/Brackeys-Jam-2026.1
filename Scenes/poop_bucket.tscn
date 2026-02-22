@@ -58,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_otk1o"]
-size = Vector3(0.32755852, 0.4038086, 0.15359497)
+size = Vector3(0.33663082, 1.2684937, 0.15359497)
 
 [node name="PoopBucket" type="Node3D" unique_id=1945986445 node_paths=PackedStringArray("spot_light")]
 script = ExtResource("1_otk1o")

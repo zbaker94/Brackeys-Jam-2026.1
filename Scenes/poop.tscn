@@ -32,6 +32,8 @@ shape = SubResource("SphereShape3D_bmvvk")
 
 [node name="Interactable" type="Node3D" parent="." unique_id=581010095]
 script = ExtResource("4_7xh6s")
+drag_spring_strength = 60.0
+drag_damping = 5.68
 
 [node name="Area3D" type="Area3D" parent="Interactable" unique_id=1875609369]
 script = ExtResource("4_3co1v")

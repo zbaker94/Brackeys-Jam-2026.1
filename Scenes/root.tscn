@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://deuvamcibo08o" path="res://Scenes/food_tube.tscn" id="10_8fnbn"]
 [ext_resource type="PackedScene" uid="uid://dsna741oo7ggr" path="res://Scenes/poop_bucket.tscn" id="11_fu36u"]
 [ext_resource type="PackedScene" uid="uid://1ssn5xao74ub" path="res://Scenes/wash_bucket.tscn" id="12_fu36u"]
+[ext_resource type="AudioStream" uid="uid://chlrc8uj28nh7" path="res://Audio/electric_hum.wav" id="16_hv1ua"]
+[ext_resource type="AudioStream" uid="uid://d1iijw0mjpse6" path="res://Audio/drone.wav" id="17_epnj5"]
 [ext_resource type="Script" uid="uid://ckvwxpo63fh2s" path="res://Scripts/wash_bucket.gd" id="18_j8vvb"]
 
 [sub_resource type="Resource" id="Resource_r3lo5"]
@@ -107,17 +109,18 @@ script = ExtResource("5_4g5cr")
 stats = Array[ExtResource("3_dun2r")]([SubResource("Resource_r3lo5"), SubResource("Resource_qtxxq")])
 
 [node name="Gimbal" type="Node3D" parent="." unique_id=656726240]
-transform = Transform3D(0.9998157, -0.019197444, 0, 0.019197444, 0.9998157, 0, 0, 0, 1, 0, 0.28552988, 1.050118)
+transform = Transform3D(0.9998157, -0.019197444, 0, 0.019197444, 0.9998157, 0, 0, 0, 1, -0.004, 0.228, 1.1550678)
 script = ExtResource("5_20eh2")
 x_rotation_range = 4.0
 y_rotation_range = 8.0
 smoothing = 8.0
 
 [node name="Camera3D" type="Camera3D" parent="Gimbal" unique_id=889799329]
-transform = Transform3D(1, 0, 0, 0, 0.9766723, -0.21473533, 0, 0.21473533, 0.9766723, 0, 0, 0.19294238)
+transform = Transform3D(1, 0, 0, 0, 0.9766723, -0.21473533, 0, 0.21473533, 0.9766723, 0, 0.01, 0)
 environment = SubResource("Environment_ckhy6")
 
 [node name="PostProcessing" type="CanvasLayer" parent="." unique_id=569288304]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PostProcessing" unique_id=179174603]
 material = SubResource("ShaderMaterial_20eh2")
@@ -226,7 +229,6 @@ transform = Transform3D(0.6783777, 0, -0.7347133, 0, 1, 0, 0.7347133, 0, 0.67837
 
 [node name="Area3D" parent="FoodTube" index="1" unique_id=2058016259 node_paths=PackedStringArray("cursor_proxy")]
 transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0.09220797, 0.9997091, 0.008606989)
-animation = 2
 cursor_proxy = NodePath("../../CursorProxy")
 
 [node name="CollisionShape3D" parent="FoodTube/Area3D" index="0" unique_id=1339502667]
@@ -239,12 +241,22 @@ transform = Transform3D(0.9559929, 0, 0.29338968, 0, 1, 0, -0.29338968, 0, 0.955
 transform = Transform3D(0.86727065, 0, 0.497837, 0, 1, 0, -0.497837, 0, 0.86727065, -0.045856815, 0, 0.0858115)
 
 [node name="CollisionShape3D" parent="PoopBucket/Area3D" index="0" unique_id=809894]
-transform = Transform3D(0.98901325, 0, -0.14782667, 0, 1, 0, 0.14782667, 0, 0.98901325, -0.0049352646, -0.10961914, 0.0851593)
+transform = Transform3D(0.9778563, 0, -0.20927721, 0, 1, 0, 0.20927721, 0, 0.9778563, 0.07686935, 0.3227234, -0.007980088)
 
 [node name="WashBucket" parent="." unique_id=251337111 instance=ExtResource("12_fu36u")]
 transform = Transform3D(0.99696505, 0, 0.0778501, 0, 1, 0, -0.0778501, 0, 0.99696505, -0.8722858, 0.3071385, 0.11273198)
 visible = false
 script = ExtResource("18_j8vvb")
+
+[node name="ElectricalHum" type="AudioStreamPlayer" parent="." unique_id=1792153394]
+stream = ExtResource("16_hv1ua")
+volume_db = -28.352
+autoplay = true
+
+[node name="Drone" type="AudioStreamPlayer" parent="." unique_id=1949674617]
+stream = ExtResource("17_epnj5")
+volume_db = -24.471
+autoplay = true
 
 [editable path="Monster"]
 [editable path="FoodTube"]

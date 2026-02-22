@@ -3,6 +3,41 @@
 [ext_resource type="Script" uid="uid://d0oarkqct6owc" path="res://Scripts/food_tube.gd" id="1_1yeme"]
 [ext_resource type="Texture2D" uid="uid://befmv6gmc0aln" path="res://Images/Sprites/Feeding Tube.png" id="2_1yeme"]
 [ext_resource type="Script" uid="uid://chlyuuysveld6" path="res://Scripts/mouse_collider.gd" id="2_orysb"]
+[ext_resource type="Texture2D" uid="uid://cv4premu8ax3r" path="res://Images/Sprites/FoodtubeIdle.png" id="3_lnhe2"]
+[ext_resource type="Script" uid="uid://b8128fx63mi1" path="res://Scripts/set_autoplay.gd" id="4_r47yb"]
+[ext_resource type="AudioStream" uid="uid://b032gcrmxjfuc" path="res://Audio/spit.wav" id="6_r47yb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inxmm"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erh0i"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu3ft"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rh6u"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it68o"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnhe2"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r47yb"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4ilu"]
+atlas = ExtResource("3_lnhe2")
+region = Rect2(512, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fu36u"]
 animations = [{
@@ -13,26 +48,69 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inxmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erh0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu3ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rh6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it68o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_lnhe2")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_r47yb")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_v4ilu")
+}],
+"loop": false,
+"name": &"puke",
+"speed": 5.0
 }]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1yeme"]
 height = 1.9804688
 radius = 0.23583984
 
-[node name="FoodTube" type="Node3D" unique_id=1649837342]
+[node name="FoodTube" type="Node3D" unique_id=1649837342 node_paths=PackedStringArray("sprite", "audio")]
 script = ExtResource("1_1yeme")
+sprite = NodePath("AnimatedSprite3D")
+audio = NodePath("Audio")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1798221943]
 transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0.8562009, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fu36u")
+animation = &"puke"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("4_r47yb")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2058016259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00045743585, 0.9997091, 0.016138136)
 script = ExtResource("2_orysb")
-animation = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1339502667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009765625, 0)
 shape = SubResource("CylinderShape3D_1yeme")
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="." unique_id=1952177436]
+stream = ExtResource("6_r47yb")
+volume_db = -33.303
